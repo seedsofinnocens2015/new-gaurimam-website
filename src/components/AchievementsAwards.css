@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 100px;
 }
 
 .desktop-layout {
@@ -22,6 +23,7 @@
   top: 50%;
   left: 50%;
   transform-origin: 50% 50%;
+  will-change: transform;
 }
 
 .circle-center-content {
