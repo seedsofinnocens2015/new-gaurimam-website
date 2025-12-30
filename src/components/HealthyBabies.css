@@ -1,0 +1,180 @@
+.healthy-babies-section {
+  padding: 80px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.healthy-babies-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.highlight-green {
+  color: #00AF87;
+}
+
+.healthy-babies-container {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.healthy-babies-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.healthy-babies-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 20px;
+}
+
+.healthy-babies-card {
+  flex: 0 0 calc((100% - 20px) / 1.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.healthy-babies-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+.healthy-babies-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slider-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.slider-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.slider-arrow:hover {
+  background: #f5f5f5;
+  border-color: #999;
+  color: #333;
+}
+
+.slider-arrow:active {
+  transform: scale(0.95);
+}
+
+.slider-arrow-right {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #fff;
+}
+
+.slider-arrow-right:hover {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
+}
+
+.slider-arrow-left {
+  background: #e5e7eb;
+  border-color: #e5e7eb;
+  color: #666;
+}
+
+.slider-arrow-left:hover {
+  background: #d1d5db;
+  border-color: #d1d5db;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #d1d5db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.slider-dot:hover {
+  background: #9ca3af;
+}
+
+.slider-dot.active {
+  width: 30px;
+  border-radius: 5px;
+  background: #00AF87;
+}
+
+@media (max-width: 768px) {
+  .healthy-babies-section {
+    padding: 60px 15px;
+  }
+
+  .healthy-babies-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .healthy-babies-card {
+    flex: 0 0 calc((100% - 15px) / 1.2);
+  }
+
+  .slider-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .slider-navigation {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .healthy-babies-section {
+    padding: 40px 10px;
+  }
+
+  .healthy-babies-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .healthy-babies-card {
+    flex: 0 0 90%;
+  }
+
+  .slider-arrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .slider-navigation {
+    gap: 12px;
+  }
+}
+

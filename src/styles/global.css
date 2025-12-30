@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* Set global font-family to sans-serif. For overrides, use inline style in components. */
+html, body {
+  font-family: 'sans-serif', Arial, Helvetica, sans-serif;
+}
+
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 3px;
+  width: 0;
+  background: #dc2626; /* Tailwind red-600 */
+  border-radius: 6px;
+  transition: width 0.3s cubic-bezier(.4,0,.2,1);
+}
+.group:hover .animated-underline::after {
+  width: 100%;
+}
+
+/* Marquee animations for review rows */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 10s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 10s linear infinite;
+}

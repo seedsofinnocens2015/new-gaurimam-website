@@ -1,0 +1,162 @@
+.circle-section {
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.desktop-layout {
+  display: block;
+}
+
+.circle-wrapper {
+  position: relative;
+  width: 700px;
+  height: 700px;
+  margin: 0 auto;
+}
+
+.circle-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 50% 50%;
+}
+
+.circle-center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.circle-center-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.mobile-layout {
+  display: none;
+}
+
+.mobile-row {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  margin-bottom: 0;
+}
+
+.mobile-row-top {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.mobile-row-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.mobile-award-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 50% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-award-item img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.mobile-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-center img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .circle-wrapper {
+    width: 600px;
+    height: 600px;
+  }
+
+  .circle-item img {
+    width: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .circle-section {
+    padding: 60px 20px;
+  }
+
+  .desktop-layout {
+    display: none;
+  }
+
+  .mobile-layout {
+    display: block;
+  }
+
+  .mobile-row {
+    height: 140px;
+    margin-bottom: 0;
+  }
+
+  .mobile-award-item img {
+    max-width: 240px;
+  }
+
+  .mobile-center {
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-center img {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circle-section {
+    padding: 40px 15px;
+  }
+
+  .mobile-row {
+    height: 120px;
+    margin-bottom: 0;
+  }
+
+  .mobile-award-item img {
+    max-width: 200px;
+  }
+
+  .mobile-center {
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-center img {
+    max-width: 200px;
+  }
+}
+  

@@ -1,0 +1,545 @@
+.footer {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+
+.footer-desktop {
+  display: block;
+}
+
+.footer-mobile {
+  display: none;
+}
+
+.footer-top-section {
+  width: 100%;
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: visible;
+}
+
+.footer-arch-container {
+  position: relative;
+  width: 100%;
+  max-width: 1700px;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: visible;
+}
+
+.footer-arch-image {
+  width: 100%;
+  max-width: 1800px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  display: block;
+  z-index: 1;
+}
+
+.desktop-footer-image {
+  display: block;
+}
+
+.mobile-footer-background {
+  width: 100%;
+  position: relative;
+  padding-top: 40px;
+}
+
+.mobile-footer-bg-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mobile-footer-content {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 40px 20px;
+  z-index: 10;
+}
+
+.footer-arch-background {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1400px;
+  height: 600px;
+  background: #929292;
+  border-radius: 1400px 1400px 0 0;
+  z-index: 1;
+}
+
+.footer-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.logo-dr {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 4px;
+  font-family: sans-serif;
+}
+
+.logo-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.logo-g-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 85px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.stethoscope-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-rest {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #1e40af;
+  font-family: sans-serif;
+}
+
+.logo-surname {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e40af;
+  font-family: sans-serif;
+}
+
+.footer-icons-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.footer-icon {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+}
+
+.icon-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.icon-house {
+  top: 60%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-star {
+  top: 70%;
+  left: 18%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-dna {
+  top: 20%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-baby {
+  top: 20%;
+  right: 25%;
+  transform: translate(50%, -50%);
+}
+
+.icon-tube {
+  top: 70%;
+  right: 18%;
+  transform: translate(50%, -50%);
+}
+
+.icon-pill {
+  top: 60%;
+  right: 5%;
+  transform: translate(50%, -50%);
+}
+
+.footer-content-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
+  z-index: 15;
+  padding: 60px 40px 40px;
+}
+
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  margin-bottom: 40px;
+}
+
+.footer-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  font-family: sans-serif;
+}
+
+.footer-quick-links {
+  flex: 1;
+}
+
+.footer-links-grid {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-links-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-link {
+  text-decoration: underline;
+  font-size: 1rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.footer-link:hover {
+  color: #93c5fd;
+}
+
+.footer-contact {
+  flex: 1;
+  text-align: right;
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.footer-contact-info p {
+  font-size: 1rem;
+  /* color: #ffffff; */
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.footer-address-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer-address {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  font-family: sans-serif;
+}
+
+.footer-copyright {
+  font-size: 0.95rem;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+@media (max-width: 1024px) {
+  .footer-arch-image {
+    max-width: 1200px;
+  }
+
+  .footer-arch-background {
+    width: 1100px;
+    height: 500px;
+    border-radius: 1100px 1100px 0 0;
+  }
+
+  .footer-arch-container {
+    min-height: 500px;
+  }
+
+  .footer-content-overlay {
+    max-width: 1100px;
+    padding: 50px 30px 30px;
+  }
+
+  .logo-rest {
+    font-size: 3rem;
+  }
+
+  .logo-g-wrapper {
+    width: 55px;
+    height: 70px;
+  }
+
+  .footer-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer-content {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-desktop {
+    display: none;
+  }
+
+  .footer-mobile {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-footer-content {
+    padding: 40px 20px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .mobile-footer-content .footer-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .mobile-footer-content .footer-contact {
+    text-align: left;
+  }
+
+  .mobile-footer-content .footer-contact-info {
+    align-items: flex-start;
+  }
+
+  .mobile-footer-content .footer-links-grid {
+    gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mobile-footer-content .footer-links-column-mobile-right {
+    text-align: right;
+  }
+
+  .mobile-footer-content .footer-links-column-mobile-right .footer-link {
+    justify-content: flex-end;
+  }
+
+  .mobile-footer-content .footer-section-title {
+    font-size: 1.3rem;
+  }
+
+  .mobile-footer-content .footer-link {
+    font-size: 1.1rem;
+  }
+
+  .mobile-footer-content .footer-contact-info p {
+    font-size: 1.1rem;
+  }
+
+  .mobile-footer-content .footer-address {
+    font-size: 1.05rem;
+  }
+
+  .mobile-footer-content .footer-copyright {
+    font-size: 1.05rem;
+  }
+
+  .logo-rest {
+    font-size: 2.5rem;
+  }
+
+  .logo-g-wrapper {
+    width: 45px;
+    height: 60px;
+  }
+
+  .logo-dr {
+    font-size: 1.2rem;
+  }
+
+  .logo-surname {
+    font-size: 1.5rem;
+  }
+
+  .footer-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon-house {
+    left: 3%;
+  }
+
+  .icon-star {
+    left: 15%;
+  }
+
+  .icon-dna {
+    left: 22%;
+  }
+
+  .icon-baby {
+    right: 22%;
+  }
+
+  .icon-tube {
+    right: 15%;
+  }
+
+  .icon-pill {
+    right: 3%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer-contact {
+    text-align: left;
+  }
+
+  .footer-contact-info {
+    align-items: flex-start;
+  }
+
+  .footer-links-grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-desktop {
+    display: none;
+  }
+
+  .footer-mobile {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-footer-content {
+    padding: 30px 15px;
+    position: absolute;
+    top: 300px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .mobile-footer-content .footer-content {
+    gap: 30px;
+  }
+
+  .mobile-footer-content .footer-links-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .mobile-footer-content .footer-links-column-mobile-right {
+    text-align: left;
+  }
+
+  .mobile-footer-content .footer-links-column-mobile-right .footer-link {
+    justify-content: flex;
+  }
+  
+  .mobile-footer-content .footer-section-title {
+    font-size: 1.25rem;
+  }
+
+  .mobile-footer-content .footer-link {
+    font-size: 1.05rem;
+  }
+
+  .mobile-footer-content .footer-contact-info p {
+    font-size: 1.05rem;
+  }
+
+  .mobile-footer-content .footer-address {
+    font-size: 1rem;
+  }
+
+  .mobile-footer-content .footer-copyright {
+    font-size: 1rem;
+  }
+
+  .mobile-footer-background {
+    padding-top: 60px;
+  }
+
+  .logo-rest {
+    font-size: 2rem;
+  }
+
+  .footer-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer-links-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+

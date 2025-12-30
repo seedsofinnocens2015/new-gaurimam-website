@@ -1,0 +1,191 @@
+.healthy-life-section {
+  padding: 80px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.healthy-life-title {
+  font-size: 62px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: left;
+  color: #333333;
+}
+
+.highlight-red {
+  color: #e63946;
+}
+
+.healthy-life-container {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.healthy-life-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.healthy-life-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 20px;
+}
+
+.healthy-life-card {
+  flex: 0 0 calc((100% - 20px) / 1.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.healthy-life-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+.healthy-life-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.healthy-life-content {
+  padding: 15px 0 0 0;
+}
+
+.healthy-life-title-text {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.slider-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.slider-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.slider-arrow:hover {
+  background: #f5f5f5;
+  border-color: #999;
+  color: #333;
+}
+
+.slider-arrow:active {
+  transform: scale(0.95);
+}
+
+.slider-arrow-right {
+  background: #e63946;
+  border-color: #e63946;
+  color: #fff;
+}
+
+.slider-arrow-right:hover {
+  background: #d62839;
+  border-color: #d62839;
+  color: #fff;
+}
+
+.slider-arrow-left {
+  background: #ffe5e5;
+  border-color: #ffe5e5;
+  color: #e63946;
+}
+
+.slider-arrow-left:hover {
+  background: #ffd4d4;
+  border-color: #ffd4d4;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #ffb3ba;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.slider-dot:hover {
+  background: #ff9ca3;
+}
+
+.slider-dot1.active {
+  width: 30px;
+  border-radius: 5px;
+  background: #E63946;
+}
+
+@media (max-width: 768px) {
+  .healthy-life-section {
+    padding: 60px 15px;
+  }
+
+  .healthy-life-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .healthy-life-card {
+    flex: 0 0 calc((100% - 15px) / 1.2);
+  }
+
+  .slider-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .slider-navigation {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .healthy-life-section {
+    padding: 40px 10px;
+  }
+
+  .healthy-life-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .healthy-life-card {
+    flex: 0 0 90%;
+  }
+
+  .slider-arrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .slider-navigation {
+    gap: 12px;
+  }
+}
+
