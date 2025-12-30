@@ -7,9 +7,9 @@ const baseImages = [
   "/Images/Container (2).png",
   "/Images/Container (3).png",
   "/Images/Container (4).png",
-  "/Images/Container (5).png",
-  "/Images/Container (6).png",
-  "/Images/Container (7).png",
+  "/Images/Container (5).jpg",
+  "/Images/Container (6).jpg",
+  "/Images/Container (7).jpg",
 ];
 
 
@@ -71,15 +71,24 @@ const SemiCircleArcSection = () => {
   const radius = getRadius();
 
 
-  const getImageSize = () => {
-    if (windowWidth >= 1440) return 250;
-    if (windowWidth >= 1200) return 220;
-    if (windowWidth >= 1024) return 180;
-    if (windowWidth >= 768) return 150;
-    return 120;
+  const getImageWidth = () => {
+    if (windowWidth >= 1440) return 200;
+    if (windowWidth >= 1200) return 180;
+    if (windowWidth >= 1024) return 150;
+    if (windowWidth >= 768) return 130;
+    return 100;
   };
 
-  const imageSize = getImageSize();
+  const getImageHeight = () => {
+    if (windowWidth >= 1440) return 267; // 200 * 4/3 = 266.67
+    if (windowWidth >= 1200) return 240; // 180 * 4/3 = 240
+    if (windowWidth >= 1024) return 200; // 150 * 4/3 = 200
+    if (windowWidth >= 768) return 173; // 130 * 4/3 = 173.33
+    return 133; // 100 * 4/3 = 133.33
+  };
+
+  const imageWidth = getImageWidth();
+  const imageHeight = getImageHeight();
 
 
   const getSVGSize = () => {
@@ -341,7 +350,8 @@ const SemiCircleArcSection = () => {
           const y = -Math.sin(radian) * mobileRadius; 
 
 
-          const rotation = (index - mobileImages.length / 2) * 8; 
+
+          const rotation = 0; 
 
           return (
             <img
@@ -373,22 +383,36 @@ const SemiCircleArcSection = () => {
             const radian = (baseAngle * Math.PI) / 180;
 
 
+            const normalizedAngle = baseAngle % 360;
+            
 
+            const baseSpacingMultiplier = 1.15;
+            
+          
+            const isBottomCenter = normalizedAngle > 150 && normalizedAngle < 210;
+            const isBottomRegion = normalizedAngle > 140 && normalizedAngle < 220;
+            
+            let adjustedRadius = radius * baseSpacingMultiplier; 
+            if (isBottomCenter) {
+              adjustedRadius = radius * 0.95; 
+            } else if (isBottomRegion) {
+              adjustedRadius = radius * 1.0; 
+            } else if (normalizedAngle > 220 && normalizedAngle < 320) {
+              adjustedRadius = radius * 1.05; 
+            }
 
-            const x = Math.sin(radian) * radius; 
+            const x = Math.sin(radian) * adjustedRadius; 
             const yOffset =
               windowWidth >= 1024 ? 50 : windowWidth >= 768 ? 40 : 30;
-            const y = -Math.cos(radian) * radius + yOffset; 
+            const y = -Math.cos(radian) * adjustedRadius + yOffset; 
 
-
-
-            const baseRotation = index % 2 === 0 ? -12 : 12;
-            const imageRotation = baseRotation + index * 4 - 14; 
+            const imageRotation = baseAngle - 90; 
 
 
 
             const isTopHalf = y < 0;
-            const zIndex = isTopHalf ? 10 + Math.abs((y / radius) * 5) : 5;
+
+            const zIndex = isTopHalf ? 8 + Math.abs((y / radius) * 3) : 3;
 
             return (
               <img
@@ -397,10 +421,10 @@ const SemiCircleArcSection = () => {
                 alt="arc-img"
                 className="arc-image"
                 style={{
-                  width: `${imageSize}px`,
-                  height: `${imageSize}px`,
-                  marginLeft: `-${imageSize / 2}px`,
-                  marginTop: `-${imageSize / 2}px`,
+                  width: `${imageWidth}px`,
+                  height: `${imageHeight}px`,
+                  marginLeft: `-${imageWidth / 2}px`,
+                  marginTop: `-${imageHeight / 2}px`,
                   transform: `translate(${x}px, ${y}px) rotate(${imageRotation}deg)`,
                   zIndex: Math.round(zIndex),
                   transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 

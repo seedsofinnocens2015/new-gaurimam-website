@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: visible; /* Changed to visible for mobile images */
+    overflow: visible; 
     position: relative;
   }
   
@@ -13,23 +13,22 @@
     position: relative;
     width: 100%;
     max-width: 1600px;
-    height: 1530px; /* Full circle height */
+    height: 1530px; 
     margin: 0 auto;
-    overflow: hidden; /* Hide bottom half of circle */
+    overflow: hidden;
   }
   
-  /* Large Desktop (1440px and above) */
+
   @media (min-width: 1440px) {
     .arc-section {
-      padding: 500px 0 352px 0;
+      padding: 500px 0 0px 0;
     }
     
     .arc-wrapper {
-      height: 1530px;
+      height: 1730px;
     }
   }
   
-  /* Desktop (1200px - 1439px) */
   @media (max-width: 1439px) and (min-width: 1200px) {
     .arc-section {
       padding: 450px 0 320px 0;
@@ -43,22 +42,22 @@
   .arc-container {
     position: relative;
     width: 100%;
-    height: 100%; /* Full height for complete circle */
+    height: 100%; 
     top: 0;
-    overflow: hidden; /* Hide overflow to clip bottom half */
   }
   
   .arc-image {
     position: absolute;
-    width: 250px;
-    height: 250px;
-    border-radius: 14px;
+    width: 200px;
+    height: 267px; 
+    border-radius: 20px; 
     object-fit: cover;
     left: 50%;
     top: 50%;
     transform-origin: center center;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease, height 0.3s ease; /* Smoother transition */
-    padding: 2px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease, height 0.3s ease; 
+    padding: 0; 
+    margin: 0; 
     will-change: transform;
   }
   
@@ -69,7 +68,7 @@
     left: 0;
     width: 100%;
     height: 50%;
-    background: white; /* White background to hide bottom half of circle */
+    background: white; 
     z-index: 9;
     pointer-events: none;
   }
@@ -80,11 +79,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    z-index: 10;
+    z-index: 20; 
     pointer-events: none;
   }
 
-  /* Timeline Line SVG */
+
   .timeline-line-svg {
     position: absolute;
     left: 50%;
@@ -92,7 +91,7 @@
     width: 1400px;
     height: 1400px;
     transform: translate(-50%, -50%);
-    z-index: 10; /* Above white overlay */
+    z-index: 10; 
     pointer-events: none;
     transition: width 0.3s ease, height 0.3s ease;
   }
@@ -103,19 +102,18 @@
     fill: none;
   }
 
-  /* Timeline Points in Arc */
   .timeline-point-arc {
     position: absolute;
     left: 50%;
     top: 50%;
     transform-origin: center center;
-    z-index: 10; /* Above white overlay */
+    z-index: 10; 
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 280px;
     text-align: center;
-    margin-left: -140px; /* Half of max-width to center */
+    margin-left: -140px; 
     transition: transform 0.2s ease-out;
     will-change: transform;
   }
@@ -134,14 +132,13 @@
     }
   }
   
-  /* Academic Excellence Timeline */
   .academic-timeline {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     min-height: 50%;
-    z-index: 11; /* Above white overlay (z-index: 9) */
+    z-index: 11; 
     padding: 40px 40px 60px;
     display: flex;
     flex-direction: column;
@@ -205,27 +202,22 @@
     text-align: center;
   }
   
-  /* Point 01 - Left align text only, keep icons centered */
   .timeline-point-arc.point-left .point-text {
     text-align: left;
   }
   
-  /* Point 04 - Right align text only, keep icons centered */
   .timeline-point-arc.point-right .point-text {
     text-align: right;
   }
   
-  /* Mobile Timeline Container - Hidden on desktop */
   .mobile-timeline-container {
     display: none;
   }
   
-  /* Mobile Semi-Circle Images - Hidden on desktop */
   .mobile-semi-circle-images {
     display: none;
   }
   
-  /* Tablet Landscape (1024px - 1199px) */
   @media (max-width: 1199px) and (min-width: 1024px) {
     .arc-section {
       padding: 400px 0 300px 0;
@@ -236,10 +228,10 @@
     }
     
     .arc-image {
-      width: 180px;
-      height: 180px;
-      margin-left: -90px;
-      margin-top: -90px;
+      width: 150px;
+      height: 200px; 
+      margin-left: -75px;
+      margin-top: -100px;
     }
     
     .timeline-line-svg {
@@ -290,7 +282,6 @@
     }
   }
   
-  /* Tablet Portrait (768px - 1023px) */
   @media (max-width: 1023px) and (min-width: 768px) {
     .arc-section {
       padding: 350px 0 280px 0;
@@ -301,10 +292,10 @@
     }
     
     .arc-image {
-      width: 150px;
-      height: 150px;
-      margin-left: -75px;
-      margin-top: -75px;
+      width: 130px;
+      height: 173px; 
+      margin-left: -65px;
+      margin-top: -86.5px;
     }
     
     .timeline-line-svg {
@@ -359,66 +350,60 @@
     }
   }
   
-  /* Mobile Landscape and Small Tablets (481px - 767px) */
   @media (max-width: 767px) {
     .arc-section {
-      padding: 180px 0 50px 0; /* Reduced top padding since images are outside */
-      overflow: visible; /* Allow slider to be visible */
+      padding: 180px 0 50px 0; 
+      overflow: visible; 
       position: relative;
     }
 
     .arc-wrapper {
-      height: auto; /* Auto height for mobile */
+    height: auto; 
       min-height: 800px;
     }
 
-    /* Hide desktop arc images on mobile */
     .arc-image {
       display: none;
     }
 
-    /* Hide timeline line SVG on mobile */
     .timeline-line-svg {
       display: none;
     }
 
-    /* Hide desktop timeline points on mobile */
     .timeline-point-arc {
       display: none !important;
     }
     
-    /* Mobile Semi-Circle Images - Outside arc-wrapper */
     .mobile-semi-circle-images {
       display: block !important;
       position: absolute;
-      top: 100px; /* Above arc-section, negative to go outside */
+      top: 100px; 
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
-      max-width: 480px; /* Significantly increased width for wider spread */
-      height: 200px; /* Increased height for better spacing */
-      z-index: 15; /* Above everything */
+      max-width: 480px; 
+      height: 200px; 
+      z-index: 15; 
       pointer-events: none;
     }
     
     .mobile-semi-circle-img {
       position: absolute;
-      width: 110px; /* Further increased width */
-      height: 110px; /* Further increased height */
-      border-radius: 0; /* Removed border radius */
-      border: none; /* No border */
+      width: 90px; 
+      height: 120px; 
+      border-radius: 0; 
+      border: none; 
       object-fit: cover;
       left: 50%;
       top: 50%;
-      margin-left: -55px; /* Half of width */
-      margin-top: -55px; /* Half of height */
-      box-shadow: none; /* Removed shadow */
-      background: none; /* No background */
+      margin-left: -45px; 
+      margin-top: -60px; 
+      box-shadow: none; 
+      background: none; 
       transition: transform 0.3s ease;
       transform-origin: center center;
     }
     
-    /* Show mobile timeline container */
     .mobile-timeline-container {
       display: block !important;
       position: relative;
@@ -428,42 +413,41 @@
     }
 
     .arc-text {
-      top: 35%; /* Better positioning */
+      top: 35%; 
       z-index: 10;
       padding: 0 20px;
       position: relative;
       margin-bottom: 40px;
-      margin-top: 20px; /* Reduced since images are outside */
+      margin-top: 20px; 
     }
     
     .mobile-semi-circle-images {
-      top: 100px; /* Higher up, outside section */
-      max-width: 460px; /* Significantly increased for wider spread */
+      top: 100px; 
+      max-width: 460px; 
       height: 190px;
     }
     
     .mobile-semi-circle-img {
-      width: 105px; /* Further increased */
-      height: 105px;
-      margin-left: -52.5px;
-      margin-top: -52.5px;
-      border-radius: 0; /* Removed border radius */
-      border: none; /* No border */
-      box-shadow: none; /* Removed shadow */
-      background: none; /* No background */
+      width: 85px; 
+      height: 113px; 
+      margin-left: -42.5px;
+      margin-top: -56.5px;
+      border-radius: 0; 
+      border: none; 
+      box-shadow: none; 
+      background: none; 
     }
 
     .mission-text {
-      font-size: 1.75rem; /* Slightly larger for better readability */
+      font-size: 1.75rem; 
       line-height: 1.3;
     }
 
     .academic-timeline {
       padding: 30px 20px 20px;
-      z-index: 11; /* Above white overlay */
-       /* Ensure white background */
-      position: relative; /* Ensure proper stacking */
-      min-height: auto; /* Allow content to determine height */
+      z-index: 11; 
+      position: relative; 
+      min-height: auto; 
       margin-top: 40px;
     }
     
@@ -473,17 +457,16 @@
     }
     
     .title-line-1 {
-      font-size: 1.75rem; /* Slightly larger */
+      font-size: 1.75rem; 
       font-weight: 700;
     }
     
     .title-line-2 {
-      font-size: 2.25rem; /* Slightly larger */
+      font-size: 2.25rem; 
       font-weight: 700;
       margin-top: 6px;
     }
     
-    /* Timeline Slider */
     .timeline-slider-wrapper {
       width: 100%;
       overflow: hidden;
@@ -537,7 +520,6 @@
       padding: 0 10px;
     }
     
-    /* Slider Navigation Container */
     .slider-navigation {
       display: flex;
       align-items: center;
@@ -547,7 +529,6 @@
       flex-wrap: wrap;
     }
     
-    /* Slider Navigation Dots */
     .slider-dots {
       display: flex;
       justify-content: center;
@@ -560,7 +541,6 @@
       height: 10px;
       border-radius: 50%;
       border: none;
-      /* background-color: #d1d5db; */
       cursor: pointer;
       padding: 0;
       transition: background-color 0.3s ease, transform 0.3s ease;
@@ -579,14 +559,12 @@
       background-color: #2563eb;
     }
     
-    /* Slider Navigation Arrows Container */
     .slider-arrows {
       display: flex;
       align-items: center;
       gap: 8px;
     }
     
-    /* Slider Navigation Arrows */
     .slider-arrow {
       position: relative;
       background: rgba(255, 255, 255, 0.9);
@@ -616,7 +594,7 @@
     }
   }
 
-  /* Mobile Portrait (481px - 767px) */
+  
   @media (max-width: 767px) and (min-width: 481px) {
     .arc-section {
       padding: 220px 0 50px 0;
@@ -658,31 +636,20 @@
     }
     
     .mobile-semi-circle-images {
-      top: 100px; /* Outside section */
-      max-width: 440px; /* Significantly increased for wider spread */
+      top: 100px; 
+      max-width: 440px; 
       height: 180px;
     }
     
     .mobile-semi-circle-img {
-      width: 100px; /* Further increased */
-      height: 100px;
-      margin-left: -50px;
-      margin-top: -50px;
-      border-radius: 0; /* Removed border radius */
-      border: none; /* No border */
-      box-shadow: none; /* Removed shadow */
-      background: none; /* No background */
-    }
-    
-    .mobile-semi-circle-img {
-      width: 70px;
-      height: 70px;
-      margin-left: -35px;
-      margin-top: -35px;
-      border-radius: 0; /* Removed border radius */
-      border: none; /* No border */
-      box-shadow: none; /* Removed shadow */
-      background: none; /* No background */
+      width: 80px; 
+      height: 107px; 
+      margin-left: -40px;
+      margin-top: -53.5px;
+      border-radius: 0; 
+      border: none; 
+      box-shadow: none; 
+      background: none; 
     }
     
     .arc-text {
@@ -716,11 +683,10 @@
     }
   }
   
-  /* Small Mobile (360px - 480px) */
   @media (max-width: 480px) {
     .arc-section {
-      padding: 200px 0 40px 0; /* Reduced bottom padding */
-      overflow: visible; /* Allow slider to be visible */
+      padding: 200px 0 40px 0; 
+      overflow: visible; 
     }
 
     .arc-wrapper {
@@ -742,8 +708,7 @@
 
     .academic-timeline {
       padding: 25px 15px 20px;
-      z-index: 11; /* Above white overlay */
-       /* Ensure white background */
+      z-index: 11; 
       margin-top: 30px;
     }
 
@@ -764,20 +729,20 @@
     }
     
     .mobile-semi-circle-images {
-      top: 285px; /* Outside section */
-      max-width: 420px; /* Significantly increased for wider spread */
+      top: 285px; 
+      max-width: 420px; 
       height: 170px;
     }
     
     .mobile-semi-circle-img {
-      width: 95px; /* Further increased */
-      height: 95px;
-      margin-left: -47.5px;
-      margin-top: -47.5px;
-      border-radius: 0; /* Removed border radius */
-      border: none; /* No border */
-      box-shadow: none; /* Removed shadow */
-      background: none; /* No background */
+      width: 75px; 
+      height: 100px; 
+      margin-left: -37.5px;
+      margin-top: -50px;
+      border-radius: 0; 
+      border: none; 
+      box-shadow: none; 
+      background: none; 
     }
     
     .arc-text {
@@ -822,7 +787,6 @@
     }
   }
   
-  /* Extra Small Mobile (below 360px) */
   @media (max-width: 359px) {
     .arc-section {
       padding: 180px 0 35px 0;
@@ -865,20 +829,20 @@
     }
     
     .mobile-semi-circle-images {
-      top: 100px; /* Outside section */
-      max-width: 400px; /* Significantly increased for wider spread */
+      top: 100px; 
+      max-width: 400px; 
       height: 160px;
     }
     
     .mobile-semi-circle-img {
-      width: 90px; /* Further increased */
-      height: 90px;
-      margin-left: -45px;
-      margin-top: -45px;
-      border-radius: 0; /* Removed border radius */
-      border: none; /* No border */
-      box-shadow: none; /* Removed shadow */
-      background: none; /* No background */
+      width: 70px; 
+      height: 93px; 
+      margin-left: -35px;
+      margin-top: -46.5px;
+      border-radius: 0; 
+      border: none; 
+      box-shadow: none; 
+      background: none; 
     }
     
     .arc-text {
