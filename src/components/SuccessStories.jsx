@@ -47,26 +47,32 @@ const SuccessStories = () => {
       <div className="success-stories-card desktop-card">
         <div className="success-stories-left">
           <div className="cases-list">
-            {[1, 2, 3, 4, 5].map((caseNum) => (
-              <button
-                key={caseNum}
-                className={`case-button ${activeCase === caseNum ? "active" : ""}`}
-                onClick={() => setActiveCase(caseNum)}
-              >
-                {activeCase === caseNum ? (
-                  <div className="case-content">
-                    <p>{successCases[caseNum].text}</p>
-                  </div>
-                ) : (
-                  <>
-                    <div className="case-icon">
-                      <span>+</span>
-                    </div>
-                    <span>Case {caseNum}</span>
-                  </>
-                )}
-              </button>
-            ))}
+            {[1, 2, 3, 4, 5].map((caseNum) => {
+              const isActive = activeCase === caseNum;
+              
+              return (
+                <div key={caseNum} className={`case-button-wrapper ${isActive ? "has-active" : ""}`}>
+                  {isActive && <div className="case-button-spacer" />}
+                  <button
+                    className={`case-button ${isActive ? "active" : ""}`}
+                    onClick={() => setActiveCase(caseNum)}
+                  >
+                    {isActive ? (
+                      <div className="case-content">
+                        <p>{successCases[caseNum].text}</p>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="case-icon">
+                          <span>+</span>
+                        </div>
+                        <span>Case {caseNum}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
 

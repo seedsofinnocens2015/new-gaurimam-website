@@ -43,9 +43,9 @@ const Stories = () => {
             </h3>
             <hr className="stories-divider" />
             <p className="stories-description">
-              Dr. Gauri Agarwal, Delhi/NCR fertility specialist with 10+ years'{" "}
-              <br /> experience. Director, IVF at Seeds of Innocence. MBBS,{" "}
-              <br /> DNB Gynecology, Belgian Reproductive Fellow, <br />{" "}
+              Dr. Gauri Agarwal, Delhi/NCR fertility specialist with 10+{" "}
+              <br />years experience. Director, IVF at Seeds of Innocence. {" "}
+              <br />MBBS, DNB Gynecology, Belgian Reproductive Fellow, <br />{" "}
               Singapore Embryology.
             </p>
           </div>

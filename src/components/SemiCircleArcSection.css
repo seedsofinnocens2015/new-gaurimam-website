@@ -44,6 +44,9 @@
     width: 100%;
     height: 100%; 
     top: 0;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   .arc-image {
@@ -55,10 +58,12 @@
     left: 50%;
     top: 50%;
     transform-origin: center center;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease, height 0.3s ease; 
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.3s ease, height 0.3s ease; 
     padding: 0; 
     margin: 0; 
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   
@@ -68,14 +73,22 @@
     left: 0;
     width: 100%;
     height: 50%;
-    background: white; 
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.444) 0%,
+      rgba(255, 255, 255, 0.601) 5%,
+      rgba(255, 255, 255, 0.97) 12%,
+      white 25%,
+      white 100%
+    );
+    box-shadow: 0 -10px 30px rgba(255, 255, 255, 0.5);
     z-index: 9;
     pointer-events: none;
   }
   
   .arc-text {
     position: absolute;
-    top: 30%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -114,8 +127,10 @@
     max-width: 280px;
     text-align: center;
     margin-left: -140px; 
-    transition: transform 0.2s ease-out;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   .mission-text {

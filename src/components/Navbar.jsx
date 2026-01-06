@@ -94,7 +94,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <img
-              src="/Images/insta.png"
+              src="/Images/insta.svg"
               alt="Instagram"
               className="w-10 h-10"
             />
@@ -107,7 +107,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <img
-              src="/Images/x.png"
+              src="/Images/x.svg"
               alt="X (Twitter)"
               className="w-10 h-10"
             />
@@ -120,7 +120,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <img
-              src="/Images/facebook.png"
+              src="/Images/facebook.svg"
               alt="Facebook"
               className="w-10 h-10"
             />
@@ -166,7 +166,7 @@ const Navbar = () => {
                     href="#"
                   >
                     <img
-                      src="/Images/insta.png"
+                      src="/Images/insta.svg"
                       alt="Instagram"
                       className="w-10 h-10"
                     />
@@ -175,7 +175,7 @@ const Navbar = () => {
                     href="#"
                   >
                     <img
-                      src="/Images/x.png"
+                      src="/Images/x.svg"
                       alt="X (Twitter)"
                       className="w-10 h-10"
                     />
@@ -184,7 +184,7 @@ const Navbar = () => {
                     href="#"
                   >
                     <img
-                      src="/Images/facebook.png"
+                      src="/Images/facebook.svg"
                       alt="Facebook"
                       className="w-10 h-10"
                     />

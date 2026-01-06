@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
-/* Set global font-family to sans-serif. For overrides, use inline style in components. */
+/* Set global font-family to SF Pro Display. For overrides, use inline style in components. */
+* {
+  font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Inter', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
 html, body {
-  font-family: 'sans-serif', Arial, Helvetica, sans-serif;
+  font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Inter', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .animated-underline {

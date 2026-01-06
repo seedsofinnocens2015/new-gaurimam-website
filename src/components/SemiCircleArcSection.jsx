@@ -24,12 +24,34 @@ const SemiCircleArcSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
   const academicTimelineRef = useRef(null);
   const missionSectionRef = useRef(null);
   const sliderRef = useRef(null);
+  const imageScrollTimeoutRef = useRef(null);
+  const timelineScrollTimeoutRef = useRef(null);
 
 
-  const mobileImages = baseImages.slice(0, 6); 
+  const mobileImages = baseImages.slice(0, 6);
+
+  // Easing functions for smooth animations
+  const easeOutCubic = (t) => {
+    return 1 - Math.pow(1 - t, 3);
+  };
+
+  const easeInOutCubic = (t) => {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  const easeOutQuart = (t) => {
+    return 1 - Math.pow(1 - t, 4);
+  };
+
+  const smoothStep = (t) => {
+    return t * t * (3 - 2 * t);
+  }; 
 
 
   const handleTouchStart = (e) => {
@@ -166,55 +188,55 @@ const SemiCircleArcSection = () => {
     const handleScroll = () => {
       if (!missionSectionRef.current) return;
 
+      setIsScrolling(true);
+      
+      // Clear existing timeout
+      if (imageScrollTimeoutRef.current) {
+        clearTimeout(imageScrollTimeoutRef.current);
+      }
+
       const element = missionSectionRef.current;
       const rect = element.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-
       const elementTop = rect.top;
       const elementBottom = rect.bottom;
-
-
-
 
       const startPoint = windowHeight * 0.9;
       const endPoint = -windowHeight * 0.2; 
 
-
       let progress = 0;
 
-
       if (elementTop < windowHeight && elementBottom > 0) {
-
         if (elementTop <= startPoint && elementTop >= endPoint) {
-
           const scrollableDistance = startPoint - endPoint;
           const scrolled = startPoint - elementTop;
-          progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
+          const rawProgress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
+          progress = easeInOutCubic(rawProgress); // Apply easing for smooth animation
         } else if (elementTop < endPoint) {
-
           progress = 1;
         } else {
-
           progress = 0;
         }
       } else {
-
         progress = 0;
       }
 
       setImageScrollProgress(progress);
+
+      // Set scrolling to false after scroll stops
+      imageScrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 100);
     };
 
-
-    let ticking = false;
+    let rafId = null;
     const optimizedScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(() => {
           handleScroll();
-          ticking = false;
+          rafId = null;
         });
-        ticking = true;
       }
     };
 
@@ -223,6 +245,12 @@ const SemiCircleArcSection = () => {
 
     return () => {
       window.removeEventListener("scroll", optimizedScroll);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+      if (imageScrollTimeoutRef.current) {
+        clearTimeout(imageScrollTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -231,57 +259,55 @@ const SemiCircleArcSection = () => {
     const handleScroll = () => {
       if (!academicTimelineRef.current) return;
 
+      setIsScrolling(true);
+      
+      // Clear existing timeout
+      if (timelineScrollTimeoutRef.current) {
+        clearTimeout(timelineScrollTimeoutRef.current);
+      }
+
       const element = academicTimelineRef.current;
       const rect = element.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-
       const elementTop = rect.top;
       const elementBottom = rect.bottom;
-      const elementHeight = rect.height;
-
-
-
-
 
       const startPoint = windowHeight * 0.9; 
       const endPoint = windowHeight * 0.1; 
 
-
       let progress = 0;
 
-
       if (elementTop < windowHeight && elementBottom > 0) {
-
         if (elementTop <= startPoint && elementTop >= endPoint) {
-
           const scrollableDistance = startPoint - endPoint;
           const scrolled = startPoint - elementTop;
-          progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
+          const rawProgress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
+          progress = easeInOutCubic(rawProgress); // Apply easing for smooth animation
         } else if (elementTop < endPoint) {
-
           progress = 1;
         } else {
-
           progress = 0;
         }
       } else {
-
         progress = 0;
       }
 
       setScrollProgress(progress);
+
+      // Set scrolling to false after scroll stops
+      timelineScrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 100);
     };
 
-
-    let ticking = false;
+    let rafId = null;
     const optimizedScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(() => {
           handleScroll();
-          ticking = false;
+          rafId = null;
         });
-        ticking = true;
       }
     };
 
@@ -290,6 +316,12 @@ const SemiCircleArcSection = () => {
 
     return () => {
       window.removeEventListener("scroll", optimizedScroll);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+      if (timelineScrollTimeoutRef.current) {
+        clearTimeout(timelineScrollTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -309,7 +341,15 @@ const SemiCircleArcSection = () => {
     const startAngle = timelineEndAngle;
 
 
-    const easedProgress = scrollProgress;
+    // Apply smooth easing for train-like movement
+    const smoothedProgress = smoothStep(scrollProgress);
+    
+    // Add very slight stagger for train-like sequential movement (each point follows slightly behind)
+    const staggerDelay = index * 0.02; // Very small delay for subtle train effect
+    const adjustedProgress = Math.min(1, Math.max(0, smoothedProgress - staggerDelay));
+    
+    // Apply additional easing for ultra-smooth movement
+    const easedProgress = easeOutQuart(adjustedProgress);
 
 
     const currentAngle = startAngle + (finalAngle - startAngle) * easedProgress;
@@ -371,9 +411,9 @@ const SemiCircleArcSection = () => {
         <div
           className="arc-container"
           style={{
-            transform: `rotate(${-90 + imageScrollProgress * 180}deg)`, 
+            transform: `rotate(${-90 + imageScrollProgress * 45}deg)`, 
             transformOrigin: "center center",
-            transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
+            transition: isScrolling ? "none" : "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)", 
           }}
         >
           {images.map((src, index) => {
@@ -386,7 +426,7 @@ const SemiCircleArcSection = () => {
             const normalizedAngle = baseAngle % 360;
             
 
-            const baseSpacingMultiplier = 1.15;
+            const baseSpacingMultiplier = 1.05;
             
           
             const isBottomCenter = normalizedAngle > 150 && normalizedAngle < 210;
@@ -394,11 +434,11 @@ const SemiCircleArcSection = () => {
             
             let adjustedRadius = radius * baseSpacingMultiplier; 
             if (isBottomCenter) {
-              adjustedRadius = radius * 0.95; 
+              adjustedRadius = radius * 0.92; 
             } else if (isBottomRegion) {
-              adjustedRadius = radius * 1.0; 
+              adjustedRadius = radius * 0.97; 
             } else if (normalizedAngle > 220 && normalizedAngle < 320) {
-              adjustedRadius = radius * 1.05; 
+              adjustedRadius = radius * 1.02; 
             }
 
             const x = Math.sin(radian) * adjustedRadius; 
@@ -406,7 +446,7 @@ const SemiCircleArcSection = () => {
               windowWidth >= 1024 ? 50 : windowWidth >= 768 ? 40 : 30;
             const y = -Math.cos(radian) * adjustedRadius + yOffset; 
 
-            const imageRotation = baseAngle - 90; 
+            const imageRotation = baseAngle + 180; 
 
 
 
@@ -427,7 +467,7 @@ const SemiCircleArcSection = () => {
                   marginTop: `-${imageHeight / 2}px`,
                   transform: `translate(${x}px, ${y}px) rotate(${imageRotation}deg)`,
                   zIndex: Math.round(zIndex),
-                  transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
+                  transition: isScrolling ? "none" : "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)", 
                 }}
               />
             );
@@ -493,7 +533,9 @@ const SemiCircleArcSection = () => {
                   ? {}
                   : {
                       transform: `translate(${x}px, ${y}px)`,
-                      transition: "transform 0.2s ease-out",
+                      transition: isScrolling 
+                        ? "transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)" 
+                        : "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                     }
               }
             >

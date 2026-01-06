@@ -102,7 +102,6 @@
   font-weight: 600;
   color: #1e40af;
   margin-bottom: 4px;
-  font-family: sans-serif;
 }
 
 .logo-name {
@@ -130,14 +129,12 @@
   font-size: 4rem;
   font-weight: 700;
   color: #1e40af;
-  font-family: sans-serif;
 }
 
 .logo-surname {
   font-size: 1.8rem;
   font-weight: 600;
   color: #1e40af;
-  font-family: sans-serif;
 }
 
 .footer-icons-container {
@@ -227,7 +224,6 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 24px;
-  font-family: sans-serif;
 }
 
 .footer-quick-links {
@@ -251,7 +247,6 @@
   transition: color 0.2s;
   display: flex;
   align-items: center;
-  font-family: sans-serif;
 }
 
 .footer-link:hover {
@@ -274,7 +269,6 @@
   font-size: 1rem;
   /* color: #ffffff; */
   margin: 0;
-  font-family: sans-serif;
 }
 
 .footer-address-section {
@@ -288,13 +282,11 @@
 .footer-address {
   font-size: 0.95rem;
   margin-bottom: 8px;
-  font-family: sans-serif;
 }
 
 .footer-copyright {
   font-size: 0.95rem;
   margin: 0;
-  font-family: sans-serif;
 }
 
 @media (max-width: 1024px) {

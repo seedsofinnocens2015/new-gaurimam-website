@@ -15,6 +15,7 @@ const AchievementsAwards = () => {
   const center = 250;
   const total = logos.length;
   const [scrollRotation, setScrollRotation] = useState(0);
+  const [hasRotated, setHasRotated] = useState(false);
   const sectionRef = useRef(null);
 
   const topRowLogos = logos.slice(0, 3);
@@ -50,12 +51,25 @@ const AchievementsAwards = () => {
           )
         );
 
-        // Rotate 360 degrees clockwise (left to right) based on scroll progress
-        const rotation = scrollProgress * 360;
-        setScrollRotation(rotation);
-      } else {
-        // Reset rotation when section is out of view
+        // Rotate 90 degrees clockwise (left to right) based on scroll progress
+        // Once rotation completes (90 degrees), keep it at 90 and stop
+        const rotation = Math.min(scrollProgress * 45, 45);
+        
+        if (rotation >= 45 && !hasRotated) {
+          setHasRotated(true);
+        }
+        
+        // Only update rotation if we haven't completed rotation
+        if (!hasRotated) {
+          setScrollRotation(rotation);
+        } else {
+          // Keep at 90 once rotation is complete
+          setScrollRotation(45);
+        }
+      } else if (rect.bottom < 0) {
+        // Reset only when scrolling back up significantly (section is above viewport)
         setScrollRotation(0);
+        setHasRotated(false);
       }
     };
 
@@ -84,7 +98,7 @@ const AchievementsAwards = () => {
                   translate(${radius}px)
                   rotate(${-currentAngle}deg)
                 `,
-                transition: scrollRotation === 0 ? 'transform 0.5s ease-out' : 'none',
+                transition: 'transform 0.1s ease-out',
               }}
             >
               <img src={src} alt="award-logo" />
