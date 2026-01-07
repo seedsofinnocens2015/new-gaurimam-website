@@ -35,8 +35,15 @@ const Stories = () => {
   return (
     <section className="stories-section" ref={sectionRef}>
       <div className="stories-image-container">
-        <img src="/Images/tedx.png" alt="Story" className="stories-image" />
+        <img src="/Images/tedx.png" alt="Story" className="stories-image stories-image-desktop" />
+        <img src="/Images/tedx (1).png" alt="Story Mobile" className="stories-image stories-image-mobile" />
+        
         <div className="stories-images-wrapper">
+          <img 
+            src="/Images/tedx.png" 
+            alt="Background" 
+            className="stories-image stories-image-background" 
+          />
           <img 
             src="/Images/stage.png" 
             alt="Story" 

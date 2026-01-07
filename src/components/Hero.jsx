@@ -99,7 +99,7 @@ const Hero = () => {
       {/* Mobile Backlight - Separate */}
       <motion.div
         className="absolute z-9 block lg:hidden"
-        style={{ top: '160px', right: '8%', left: 'auto' }}
+        style={{ top: '170px', right: '8%', left: 'auto' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
@@ -114,9 +114,9 @@ const Hero = () => {
             width: '85vw',
             maxWidth: '380px',
             height: 'auto',
-            aspectRatio: '1451/845',
+            aspectRatio: '451/845',
             borderRadius: '20px',
-            boxShadow: '0 0 30px 15px rgba(253, 253, 253, 0), 0 0 50px 25px rgba(0, 0, 0, 0.4), 0 0 70px 35px rgba(0, 0, 0, 0.3)',
+            boxShadow: '0 0 60px 30px rgba(253, 253, 253, 0), 0 0 100px 50px rgba(0, 0, 0, 0.63), 0 0 140px 70px rgba(0, 0, 0, 0.3), 0 0 180px 90px rgba(0, 0, 0, 0.2)',
             pointerEvents: 'none'
           }}
         ></div>
