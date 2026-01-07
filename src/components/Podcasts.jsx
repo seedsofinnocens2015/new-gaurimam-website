@@ -5,13 +5,11 @@ const Podcasts = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
-  const scrollTimeoutRef = useRef(null);
-  const currentSlideRef = useRef(0);
-  const lastScrollYRef = useRef(0);
+  const wheelTimeoutRef = useRef(null);
   const isTransitioningRef = useRef(false);
-  const hasEnteredRef = useRef(false);
   const isInViewRef = useRef(false);
-  const lastWheelDeltaRef = useRef(0);
+  const accumulatedDeltaRef = useRef(0);
+  const scrollDirectionRef = useRef(null);
 
   const podcastItems = [
     {
@@ -40,12 +38,7 @@ const Podcasts = () => {
     },
   ];
 
-
-  useEffect(() => {
-    currentSlideRef.current = currentSlide;
-  }, [currentSlide]);
-
-
+  // Intersection Observer to detect when section is in view
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -53,62 +46,13 @@ const Podcasts = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const wasInView = isInViewRef.current;
           isInViewRef.current = entry.isIntersecting;
-
-
-          if (entry.isIntersecting && !wasInView && !hasEnteredRef.current) {
-            hasEnteredRef.current = true;
-
-
-
-
-
-            let scrollDirection = "down"; 
-            if (Math.abs(lastWheelDeltaRef.current) > 0) {
-              scrollDirection = lastWheelDeltaRef.current > 0 ? "down" : "up";
-            } else {
-
-              const currentScrollY = window.scrollY;
-              scrollDirection =
-                currentScrollY > lastScrollYRef.current ? "down" : "up";
-            }
-
-
-            isTransitioningRef.current = true;
-
-
-            if (scrollDirection === "down") {
-
-              setCurrentSlide((prev) => {
-                const newSlide = prev >= podcastItems.length - 1 ? 0 : prev + 1;
-                currentSlideRef.current = newSlide;
-                return newSlide;
-              });
-            } else {
-
-              setCurrentSlide((prev) => {
-                const newSlide = prev <= 0 ? podcastItems.length - 1 : prev - 1;
-                currentSlideRef.current = newSlide;
-                return newSlide;
-              });
-            }
-
-
-            setTimeout(() => {
-              isTransitioningRef.current = false;
-            }, 500);
-          }
-
-
-          if (!entry.isIntersecting && wasInView) {
-            hasEnteredRef.current = false;
-          }
         });
       },
       {
-        threshold: 0.2, 
-      },
+        threshold: 0.3,
+        rootMargin: "0px",
+      }
     );
 
     observer.observe(section);
@@ -116,104 +60,96 @@ const Podcasts = () => {
     return () => {
       observer.disconnect();
     };
-  }, [podcastItems.length]);
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      lastScrollYRef.current = window.scrollY;
-    };
-
-    const handleWheelTrack = (e) => {
-      lastWheelDeltaRef.current = e.deltaY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("wheel", handleWheelTrack, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("wheel", handleWheelTrack);
-    };
   }, []);
 
-
+  // Wheel event handler for carousel scrolling
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const handleWheel = (e) => {
-
+      // Only handle wheel events when section is in view
       if (!isInViewRef.current) {
         return;
       }
 
-
+      // Prevent default scroll when transitioning
       if (isTransitioningRef.current) {
         e.preventDefault();
         return;
       }
 
       const deltaY = e.deltaY;
+      const threshold = 50; // Minimum scroll delta to trigger slide change
+
+      // Determine scroll direction
       const isScrollingDown = deltaY > 0;
       const isScrollingUp = deltaY < 0;
-      const isAtLastSlide = currentSlideRef.current >= podcastItems.length - 1;
-      const isAtFirstSlide = currentSlideRef.current <= 0;
 
+      // Track scroll direction and accumulate delta only if direction matches
+      if (scrollDirectionRef.current === null) {
+        scrollDirectionRef.current = isScrollingDown ? 'down' : 'up';
+      }
 
-
-
+      // Only accumulate if scrolling in the same direction
       if (
-        (isAtLastSlide && isScrollingDown) ||
-        (isAtFirstSlide && isScrollingUp)
+        (isScrollingDown && scrollDirectionRef.current === 'down') ||
+        (isScrollingUp && scrollDirectionRef.current === 'up')
       ) {
-
-        return;
+        accumulatedDeltaRef.current += Math.abs(deltaY);
+      } else {
+        // Reset if direction changes
+        accumulatedDeltaRef.current = Math.abs(deltaY);
+        scrollDirectionRef.current = isScrollingDown ? 'down' : 'up';
       }
 
-
-      e.preventDefault();
-
-
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
+      // Clear existing timeout
+      if (wheelTimeoutRef.current) {
+        clearTimeout(wheelTimeoutRef.current);
       }
 
+      // Only trigger slide change if accumulated delta exceeds threshold
+      if (accumulatedDeltaRef.current >= threshold) {
+        e.preventDefault();
+        
+        // Set transitioning state
+        isTransitioningRef.current = true;
 
-      scrollTimeoutRef.current = setTimeout(() => {
         if (isScrollingDown) {
-
           setCurrentSlide((prev) => {
-            if (prev >= podcastItems.length - 1) {
-              currentSlideRef.current = 0;
-              return 0; 
-            }
-            const newSlide = prev + 1;
-            currentSlideRef.current = newSlide;
+            const newSlide = prev >= podcastItems.length - 1 ? 0 : prev + 1;
             return newSlide;
           });
         } else if (isScrollingUp) {
-
           setCurrentSlide((prev) => {
-            if (prev <= 0) {
-              const newSlide = podcastItems.length - 1;
-              currentSlideRef.current = newSlide;
-              return newSlide; 
-            }
-            const newSlide = prev - 1;
-            currentSlideRef.current = newSlide;
+            const newSlide = prev <= 0 ? podcastItems.length - 1 : prev - 1;
             return newSlide;
           });
         }
-      }, 150); 
+
+        // Reset accumulated delta and direction
+        accumulatedDeltaRef.current = 0;
+        scrollDirectionRef.current = null;
+
+        // Allow transition to complete before allowing next scroll
+        setTimeout(() => {
+          isTransitioningRef.current = false;
+        }, 600); // Match CSS transition duration (500ms) + buffer
+      } else {
+        // Reset accumulated delta after a short delay if no action taken
+        wheelTimeoutRef.current = setTimeout(() => {
+          accumulatedDeltaRef.current = 0;
+          scrollDirectionRef.current = null;
+        }, 150);
+      }
     };
 
     section.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
       section.removeEventListener("wheel", handleWheel);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
+      if (wheelTimeoutRef.current) {
+        clearTimeout(wheelTimeoutRef.current);
       }
     };
   }, [podcastItems.length]); 
@@ -282,3 +218,4 @@ const Podcasts = () => {
 };
 
 export default Podcasts;
+

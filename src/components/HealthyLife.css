@@ -29,8 +29,9 @@
 
 .healthy-life-track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 20px;
+  will-change: transform;
 }
 
 .healthy-life-card {
@@ -135,7 +136,7 @@
   background: #ff9ca3;
 }
 
-.slider-dot1.active {
+.slider-dot.active {
   width: 30px;
   border-radius: 5px;
   background: #E63946;

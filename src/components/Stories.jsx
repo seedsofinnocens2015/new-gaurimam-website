@@ -36,6 +36,18 @@ const Stories = () => {
     <section className="stories-section" ref={sectionRef}>
       <div className="stories-image-container">
         <img src="/Images/tedx.png" alt="Story" className="stories-image" />
+        <div className="stories-images-wrapper">
+          <img 
+            src="/Images/stage.png" 
+            alt="Story" 
+            className={`stories-image stories-image-stage ${isVisible ? "slide-up" : ""}`} 
+          />
+          <img 
+            src="/Images/audience.png" 
+            alt="Story" 
+            className={`stories-image stories-image-audience ${isVisible ? "slide-up-delayed" : ""}`} 
+          />
+        </div>
         <div className="stories-overlay">
           <div className="stories-content-left">
             <h3 className="stories-title">

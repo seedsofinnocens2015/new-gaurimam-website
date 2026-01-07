@@ -28,8 +28,9 @@
 
 .healthy-babies-track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 20px;
+  will-change: transform;
 }
 
 .healthy-babies-card {
