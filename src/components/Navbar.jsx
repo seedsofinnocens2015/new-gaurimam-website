@@ -30,14 +30,14 @@ const Navbar = () => {
       className={`w-full ${isSticky ? 'fixed top-0 left-0 z-50' : 'absolute top-0 left-0 z-20'}`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 2.6 }}
     >
       <nav className="w-full bg-white py-4 md:px-8 flex items-center justify-between relative lg:h-[94.061px]">
         <motion.div
           className="flex-shrink-0 lg:w-[159.6px] lg:h-[94.061px] lg:flex lg:items-center"
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 1.2 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 2.8 }}
         >
           <img
             src="/Images/logo.png"
@@ -56,7 +56,7 @@ const Navbar = () => {
                 transition={{
                   duration: 0.5,
                   ease: "easeOut",
-                  delay: 1.3 + (index * 0.1)
+                  delay: 2.9 + (index * 0.1)
                 }}
               >
                 <a
@@ -85,7 +85,7 @@ const Navbar = () => {
           style={{ gap: '9px' }}
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 1.2 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 2.8 }}
         >
           <motion.a
             href="#"
@@ -199,7 +199,7 @@ const Navbar = () => {
         className="w-full h-px bg-gray-300 origin-left"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
+        transition={{ duration: 0.8, delay: 3.0, ease: "easeOut" }}
       ></motion.div>
     </motion.header>
   );
