@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SuccessStories.css";
 
 const SuccessStories = () => {
   const [activeCase, setActiveCase] = useState(1);
+  const [isChanging, setIsChanging] = useState(false);
 
   const successCases = {
     1: {
@@ -30,12 +31,27 @@ const SuccessStories = () => {
   const currentCase = successCases[activeCase];
   const totalCases = Object.keys(successCases).length;
 
+  useEffect(() => {
+    // When activeCase changes, immediately hide old content
+    setIsChanging(true);
+    // Use requestAnimationFrame to ensure DOM update happens before showing new
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsChanging(false);
+      });
+    });
+  }, [activeCase]);
+
   const nextCase = () => {
     setActiveCase((prev) => (prev >= totalCases ? 1 : prev + 1));
   };
 
   const prevCase = () => {
     setActiveCase((prev) => (prev <= 1 ? totalCases : prev - 1));
+  };
+
+  const handleCaseClick = (caseNum) => {
+    setActiveCase(caseNum);
   };
 
   return (
@@ -55,11 +71,14 @@ const SuccessStories = () => {
                   {isActive && <div className="case-button-spacer" />}
                   <button
                     className={`case-button ${isActive ? "active" : ""}`}
-                    onClick={() => setActiveCase(caseNum)}
+                    onClick={() => handleCaseClick(caseNum)}
                   >
                     {isActive ? (
-                      <div className="case-content">
-                        <p>{successCases[caseNum].text}</p>
+                      <div 
+                        key={`case-content-${activeCase}`} 
+                        className={`case-content ${isChanging ? "changing" : "fade-in"}`}
+                      >
+                        <p>{successCases[activeCase].text}</p>
                       </div>
                     ) : (
                       <>
