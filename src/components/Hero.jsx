@@ -62,8 +62,8 @@ const Hero = () => {
         <div
           className="rounded-[40px]"
           style={{
-            width: '1451px',
-            height: '845px',
+            width: '1600px',
+            height: '900px',
             borderRadius: '40px',
             boxShadow: '0 0 60px 30px rgba(253, 253, 253, 0), 0 0 100px 50px rgba(0, 0, 0, 0.63), 0 0 140px 70px rgba(0, 0, 0, 0.3), 0 0 180px 90px rgba(0, 0, 0, 0.2)',
             pointerEvents: 'none'
@@ -88,8 +88,8 @@ const Hero = () => {
           alt="Dr. Gauri Agarwal Frame"
           className="rounded-[40px]"
           style={{
-            width: '1451px',
-            height: '845px',
+            width: '1600px',
+            height: '900px',
             borderRadius: '40px',
             // filter: 'drop-shadow(0 0 20px rgba(0, 0, 0, 0))'
           }}
