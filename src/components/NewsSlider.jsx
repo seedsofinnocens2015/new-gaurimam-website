@@ -82,19 +82,19 @@ const NewsSlider = () => {
         </div>
       </div>
 
-      <div className="slider-navigation">
-        <div className="slider-dots">
+      <div className="news-slider-navigation">
+        <div className="news-slider-dots">
           {newsItems.map((_, index) => (
             <button
               key={index}
-              className={`slider-dot ${currentSlide === index ? "active" : ""}`}
+              className={`news-slider-dot ${currentSlide === index ? "active" : ""}`}
               onClick={() => goToSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
 
-        <button className="slider-arrow slider-arrow-left" onClick={prevSlide}>
+        <button className="news-slider-arrow news-slider-arrow-left" onClick={prevSlide}>
           <svg
             width="16"
             height="16"
@@ -112,7 +112,7 @@ const NewsSlider = () => {
           </svg>
         </button>
 
-        <button className="slider-arrow slider-arrow-right" onClick={nextSlide}>
+        <button className="news-slider-arrow news-slider-arrow-right" onClick={nextSlide}>
           <svg
             width="16"
             height="16"

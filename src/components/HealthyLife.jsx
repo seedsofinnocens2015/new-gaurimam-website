@@ -264,25 +264,25 @@ const HealthyLife = () => {
         </div>
       </div>
 
-      <div className="slider-navigation">
-        <div className="slider-dots">
+      <div className="healthy-life-slider-navigation">
+        <div className="healthy-life-slider-dots">
           {healthyLifeItems.map((_, index) => (
             <button
               key={index}
-              className={`slider-dot ${currentSlide === index ? "active" : ""}`}
+              className={`healthy-life-slider-dot ${currentSlide === index ? "active" : ""}`}
               onClick={() => goToSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
 
-        <button className="slider-arrow slider-arrow-left" onClick={prevSlide}>
+        <button className="healthy-life-slider-arrow healthy-life-slider-arrow-left" onClick={prevSlide}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
 
-        <button className="slider-arrow slider-arrow-right" onClick={nextSlide}>
+        <button className="healthy-life-slider-arrow healthy-life-slider-arrow-right" onClick={nextSlide}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
