@@ -6,14 +6,30 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
 
   const navItems = [
-    'About',
-    'TedX',
-    'Podcasts',
-    'Success Stories',
-    'Initiatives',
-    'News',
-    'Gallery'
+    { name: 'About', id: 'about' },
+    { name: 'TedX', id: 'tedx' },
+    { name: 'Podcasts', id: 'podcasts' },
+    { name: 'Success Stories', id: 'success-stories' },
+    { name: 'Initiatives', id: 'initiatives' },
+    { name: 'News', id: 'news' },
+    { name: 'Gallery', id: 'gallery' }
   ];
+
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Account for navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setIsMenuOpen(false); // Close mobile menu after clicking
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +76,8 @@ const Navbar = () => {
                 }}
               >
                 <a
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
+                  href={`#${item.id}`}
+                  onClick={(e) => scrollToSection(e, item.id)}
                   className="text-gray-800 hover:text-blue-600 transition-colors duration-200 font-medium text-base rounded-[30px] py-1 px-3"
                   style={{
                     borderRadius: '30px',
@@ -73,7 +90,7 @@ const Navbar = () => {
                     justifyContent: 'center'
                   }}
                 >
-                  {item}
+                  {item.name}
                 </a>
               </motion.li>
             ))}
@@ -152,11 +169,11 @@ const Navbar = () => {
               {navItems.map((item, index) => (
                 <li key={index}>
                   <a
-                    href={`#${item.toLowerCase().replace(' ', '-')}`}
-                    onClick={() => setIsMenuOpen(false)}
+                    href={`#${item.id}`}
+                    onClick={(e) => scrollToSection(e, item.id)}
                     className="block px-6 py-3 text-gray-800 hover:bg-gray-50 hover:text-blue-600 transition-colors font-medium"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 </li>
               ))}

@@ -39,7 +39,7 @@ const SuccessStories = () => {
   };
 
   return (
-    <section className="success-stories-section">
+    <section id="success-stories" className="success-stories-section">
       <h2 className="success-stories-title">
         Success Stories <span className="star-emoji">⭐</span>
       </h2>

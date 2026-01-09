@@ -9,6 +9,8 @@ const HealthyBabies = () => {
   const isInViewRef = useRef(false);
   const accumulatedDeltaRef = useRef(0);
   const scrollDirectionRef = useRef(null);
+  const touchStartXRef = useRef(null);
+  const touchStartYRef = useRef(null);
 
   const healthyBabiesItems = [
     {
@@ -71,12 +73,16 @@ const HealthyBabies = () => {
     };
   }, []);
 
-  // Wheel event handler for carousel scrolling
+  // Wheel event handler for carousel scrolling (desktop only)
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const handleWheel = (e) => {
+      // Skip wheel events on mobile devices
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) return;
+
       // Only handle wheel events when section is in view
       if (!isInViewRef.current) {
         return;
@@ -160,6 +166,67 @@ const HealthyBabies = () => {
       if (wheelTimeoutRef.current) {
         clearTimeout(wheelTimeoutRef.current);
       }
+    };
+  }, [healthyBabiesItems.length]);
+
+  // Touch event handlers for mobile swipe
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleTouchStart = (e) => {
+      touchStartXRef.current = e.touches[0].clientX;
+      touchStartYRef.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e) => {
+      if (!touchStartXRef.current || !touchStartYRef.current) {
+        return;
+      }
+
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      
+      const diffX = touchStartXRef.current - touchEndX;
+      const diffY = touchStartYRef.current - touchEndY;
+
+      // Only handle horizontal swipes (ignore vertical scrolling)
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+        if (isTransitioningRef.current) {
+          touchStartXRef.current = null;
+          touchStartYRef.current = null;
+          return;
+        }
+
+        isTransitioningRef.current = true;
+
+        if (diffX > 0) {
+          // Swipe left - next slide
+          setCurrentSlide((prev) => {
+            return prev >= healthyBabiesItems.length - 1 ? 0 : prev + 1;
+          });
+        } else {
+          // Swipe right - previous slide
+          setCurrentSlide((prev) => {
+            return prev <= 0 ? healthyBabiesItems.length - 1 : prev - 1;
+          });
+        }
+
+        setTimeout(() => {
+          isTransitioningRef.current = false;
+        }, 600);
+      }
+
+      touchStartXRef.current = null;
+      touchStartYRef.current = null;
+    };
+
+    section.addEventListener("touchstart", handleTouchStart, { passive: true });
+    section.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      section.removeEventListener("touchstart", handleTouchStart);
+      section.removeEventListener("touchend", handleTouchEnd);
     };
   }, [healthyBabiesItems.length]);
 

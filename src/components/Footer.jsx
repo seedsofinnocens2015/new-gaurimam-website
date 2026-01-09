@@ -2,6 +2,21 @@ import React from "react";
 import "./Footer.css";
 
 const Footer = () => {
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Account for navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-desktop">
@@ -19,30 +34,27 @@ const Footer = () => {
                   <h3 className="footer-section-title">Quick Links</h3>
                   <div className="footer-links-grid">
                     <div className="footer-links-column">
-                      <a href="#about" className="footer-link">
+                      <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="footer-link">
                         About
                       </a>
-                      <a href="#featured" className="footer-link">
-                        Featured
-                      </a>
-                      <a href="#awards" className="footer-link">
-                        Awards
-                      </a>
-                      <a href="#podcasts" className="footer-link">
+                      <a href="#podcasts" onClick={(e) => scrollToSection(e, 'podcasts')} className="footer-link">
                         Podcasts
+                      </a>
+                      <a href="#success-stories" onClick={(e) => scrollToSection(e, 'success-stories')} className="footer-link">
+                        Success Stories
+                      </a>
+                      <a href="#news" onClick={(e) => scrollToSection(e, 'news')} className="footer-link">
+                        News
                       </a>
                     </div>
                     <div className="footer-links-column">
-                      <a href="#tedx" className="footer-link">
+                      <a href="#tedx" onClick={(e) => scrollToSection(e, 'tedx')} className="footer-link">
                         TedX
                       </a>
-                      <a href="#success-stories" className="footer-link">
-                        Success Stories
-                      </a>
-                      <a href="#initiatives" className="footer-link">
+                      <a href="#initiatives" onClick={(e) => scrollToSection(e, 'initiatives')} className="footer-link">
                         Initiatives
                       </a>
-                      <a href="#gallery" className="footer-link">
+                      <a href="#gallery" onClick={(e) => scrollToSection(e, 'gallery')} className="footer-link">
                         Gallery
                         <svg
                           width="12"
@@ -98,30 +110,27 @@ const Footer = () => {
                 <h3 className="footer-section-title">Quick Links</h3>
                 <div className="footer-links-grid">
                   <div className="footer-links-column">
-                    <a href="#about" className="footer-link">
+                    <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="footer-link">
                       About
                     </a>
-                    <a href="#featured" className="footer-link">
-                      Featured
-                    </a>
-                    <a href="#awards" className="footer-link">
-                      Awards
-                    </a>
-                    <a href="#podcasts" className="footer-link">
+                    <a href="#podcasts" onClick={(e) => scrollToSection(e, 'podcasts')} className="footer-link">
                       Podcasts
+                    </a>
+                    <a href="#success-stories" onClick={(e) => scrollToSection(e, 'success-stories')} className="footer-link">
+                      Success Stories
+                    </a>
+                    <a href="#news" onClick={(e) => scrollToSection(e, 'news')} className="footer-link">
+                      News
                     </a>
                   </div>
                   <div className="footer-links-column footer-links-column-mobile-right">
-                    <a href="#tedx" className="footer-link">
+                    <a href="#tedx" onClick={(e) => scrollToSection(e, 'tedx')} className="footer-link">
                       TedX
                     </a>
-                    <a href="#success-stories" className="footer-link">
-                      Success Stories
-                    </a>
-                    <a href="#initiatives" className="footer-link">
+                    <a href="#initiatives" onClick={(e) => scrollToSection(e, 'initiatives')} className="footer-link">
                       Initiatives
                     </a>
-                    <a href="#gallery" className="footer-link">
+                    <a href="#gallery" onClick={(e) => scrollToSection(e, 'gallery')} className="footer-link">
                       Gallery
                       <svg
                         width="12"

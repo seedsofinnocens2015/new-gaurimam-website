@@ -380,7 +380,7 @@ const SemiCircleArcSection = () => {
   };
 
   return (
-    <section className="arc-section">
+    <section id="about" className="arc-section">
       <div className="mobile-semi-circle-images">
         {mobileImages.map((src, index) => {
           // Create semicircle similar to baseImages circle

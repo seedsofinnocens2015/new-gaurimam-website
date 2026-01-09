@@ -60,7 +60,7 @@ const NewsSlider = () => {
   };
 
   return (
-    <section className="news-slider-section">
+    <section id="news" className="news-slider-section">
       <h2 className="news-section-title">In the News</h2>
 
       <div className="news-slider-container">
