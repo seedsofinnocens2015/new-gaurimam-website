@@ -139,25 +139,25 @@ const SemiCircleArcSection = () => {
     {
       number: "01",
       icon: "🎓",
-      color: "#22c55e",
+      color: "#D1F373",
       text: "Dr. Agarwal finished her MBBS degree from Bharati Vidyapeeth Medical College, Pune.",
     },
     {
       number: "02",
       icon: "👶",
-      color: "#3b82f6",
+      color: "#049DE3",
       text: "DNB Obstetrics & Gynaecology residency program at KG Superspecialty Hospital, Coimbatore.",
     },
     {
       number: "03",
       icon: "💊",
-      color: "#ef4444",
+      color: "#E93C50",
       text: "Fellowship in Reproductive Medicine (Infertility) from the University of Gent, Belgium.",
     },
     {
       number: "04",
       icon: "🩺",
-      color: "#eab308",
+      color: " #FEBF11",
       text: "Training in Embryology at the National University of Singapore.",
     },
   ];
@@ -630,9 +630,9 @@ const SemiCircleArcSection = () => {
         <div className="arc-white-overlay"></div>
 
         <div className="arc-text" ref={missionSectionRef}>
-          <h2 className="mission-text">A Woman on a Mission to</h2>
-          <h2 className="mission-text">Make Fertility Care</h2>
-          <h2 className="mission-text">Accessible to All</h2>
+          <h2 className="mission-text">A <strong>Woman on a Mission</strong> to</h2>
+          <h2 className="mission-text">Make <strong>Fertility Care</strong></h2>
+          <h2 className="mission-text"><strong>Accessible to All</strong></h2>
         </div>
 
         <div className="academic-timeline" ref={academicTimelineRef}>
