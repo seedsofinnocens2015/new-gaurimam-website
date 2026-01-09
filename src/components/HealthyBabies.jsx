@@ -3,9 +3,7 @@ import "./HealthyBabies.css";
 
 const HealthyBabies = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isFirstImageFullscreen, setIsFirstImageFullscreen] = useState(false);
   const sectionRef = useRef(null);
-  const firstImageRef = useRef(null);
   const wheelTimeoutRef = useRef(null);
   const isTransitioningRef = useRef(false);
   const isInViewRef = useRef(false);
@@ -74,47 +72,6 @@ const HealthyBabies = () => {
       observer.disconnect();
     };
   }, []);
-
-  // Scroll handler for fullscreen first image effect
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = sectionRef.current;
-      const firstImage = firstImageRef.current;
-      
-      // Only apply fullscreen to first image when on first slide
-      if (!section || !firstImage || currentSlide !== 0) {
-        setIsFirstImageFullscreen(false);
-        return;
-      }
-
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Check if section is entering viewport
-      // Fullscreen when section top reaches viewport top
-      const sectionTop = rect.top;
-      const sectionBottom = rect.bottom;
-      
-      // Fullscreen when section enters viewport (top is at or above 20% of viewport)
-      // Keep fullscreen while section is in upper portion of viewport
-      // Return to normal when scrolled further down
-      if (sectionTop <= windowHeight * 0.2 && sectionTop >= -windowHeight * 0.2 && sectionBottom > windowHeight * 0.4) {
-        setIsFirstImageFullscreen(true);
-      } else {
-        // Return to normal when scrolled past
-        setIsFirstImageFullscreen(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    handleScroll(); // Check initial state
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, [currentSlide]);
 
   // Wheel event handler for carousel scrolling (desktop only)
   useEffect(() => {
@@ -285,12 +242,9 @@ const HealthyBabies = () => {
               transform: `translateX(calc(-${currentSlide} * (80% + 16px)))`,
             }}
           >
-            {healthyBabiesItems.map((item, index) => (
+            {healthyBabiesItems.map((item) => (
               <div key={item.id} className="healthy-babies-card">
-                <div 
-                  className={`healthy-babies-image ${index === 0 && isFirstImageFullscreen ? 'fullscreen' : ''}`}
-                  ref={index === 0 ? firstImageRef : null}
-                >
+                <div className="healthy-babies-image">
                   <img src={item.image} alt="Happy and Healthy Baby" />
                 </div>
               </div>
