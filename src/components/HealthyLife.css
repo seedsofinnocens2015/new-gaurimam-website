@@ -7,7 +7,7 @@
 
 .healthy-life-title {
   font-size: 62px;
-  font-weight: bold;
+  font-weight: 500px;
   margin-bottom: 40px;
   text-align: left;
   color: #333333;
@@ -15,6 +15,7 @@
 
 .highlight-red {
   color: #e63946;
+  font-weight: bold;
 }
 
 .healthy-life-container {
