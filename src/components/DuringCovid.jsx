@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./DuringCovid.css";
+
+const tabs = ["labs", "awareness", "homeivf"];
 
 const DuringCovid = () => {
   const [activeTab, setActiveTab] = useState("labs");
+  const sectionRef = useRef(null);
+  const scrollTimeoutRef = useRef(null);
 
   const contentData = {
     labs: {
@@ -11,6 +15,8 @@ const DuringCovid = () => {
       description:
         "Dr. Gauri Agarwal established India's first round-the-clock COVID-19 test-on-arrival lab at IGI Airport and scaled Genestrings Diagnostics across various airports, strengthening India's pandemic response infrastructure.",
       iconIndex: 0,
+      iconImage: "/Images/Icon Container.png",
+      activeIconImage: "/Images/Icon Container1.png",
     },
     awareness: {
       image: "/Images/Image (2).png",
@@ -18,6 +24,8 @@ const DuringCovid = () => {
       description:
         "During the COVID-19 pandemic, Dr. Gauri Agarwal provided expert media commentary on testing challenges and workforce gaps while leading high-volume diagnostic labs that supported government testing initiatives and public awareness efforts.",
       iconIndex: 1,
+      iconImage: "/Images/Icon Container (1).png",
+      activeIconImage: "/Images/Icon Container (1)1.png",
     },
     homeivf: {
       image: "/Images/Main Image.png",
@@ -25,13 +33,57 @@ const DuringCovid = () => {
       description:
         "Recognising the need for safer care during COVID-19, Dr. Gauri Agarwal pioneered HomeIVF, a home-based fertility care model that brought consultations, monitoring, and hormone therapy directly to patients.",
       iconIndex: 2,
+      iconImage: "/Images/Icon Container (2).png",
+      activeIconImage: "/Images/Icon Container (2)1.png",
     },
   };
 
   const currentContent = contentData[activeTab];
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleWheel = (e) => {
+      // Prevent default scroll behavior
+      e.preventDefault();
+
+      // Clear existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      // Throttle scroll events
+      scrollTimeoutRef.current = setTimeout(() => {
+        const currentIndex = tabs.indexOf(activeTab);
+        let newIndex = currentIndex;
+
+        if (e.deltaY > 0) {
+          // Scrolling down - move to next tab
+          newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : currentIndex;
+        } else if (e.deltaY < 0) {
+          // Scrolling up - move to previous tab
+          newIndex = currentIndex > 0 ? currentIndex - 1 : currentIndex;
+        }
+
+        if (newIndex !== currentIndex) {
+          setActiveTab(tabs[newIndex]);
+        }
+      }, 150);
+    };
+
+    section.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      section.removeEventListener("wheel", handleWheel);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [activeTab]);
+
   return (
-    <section className="during-covid-section">
+    <section className="during-covid-section" ref={sectionRef}>
       <h2 className="during-covid-title">During Covid</h2>
 
       <div className="during-covid-content">
@@ -51,7 +103,7 @@ const DuringCovid = () => {
               aria-label="Labs"
             >
               <img
-                src="/Images/Icon Container.png"
+                src={activeTab === "labs" ? contentData.labs.activeIconImage : contentData.labs.iconImage}
                 alt="Labs"
                 className="icon-image"
               />
@@ -62,7 +114,7 @@ const DuringCovid = () => {
               aria-label="Awareness"
             >
               <img
-                src="/Images/Icon Container (1).png"
+                src={activeTab === "awareness" ? contentData.awareness.activeIconImage : contentData.awareness.iconImage}
                 alt="Awareness"
                 className="icon-image"
               />
@@ -73,7 +125,7 @@ const DuringCovid = () => {
               aria-label="HomeIVF"
             >
               <img
-                src="/Images/Icon Container (2).png"
+                src={activeTab === "homeivf" ? contentData.homeivf.activeIconImage : contentData.homeivf.iconImage}
                 alt="HomeIVF"
                 className="icon-image"
               />

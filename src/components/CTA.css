@@ -1,0 +1,21 @@
+.cta-section {
+  /* padding: 80px 20px; */
+  /* max-width: 1400px; */
+  /* margin: 0 auto; */
+  /* width: 100%; */
+  /* display: block; */
+}
+
+.cta-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Hide on mobile view */
+@media (max-width: 768px) {
+  .cta-section {
+    display: none;
+  }
+}

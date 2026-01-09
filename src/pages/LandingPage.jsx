@@ -11,6 +11,7 @@ import SuccessStories from '../components/SuccessStories';
 import HealthyBabies from '../components/HealthyBabies';
 import Podcasts from '../components/Podcasts';
 import Stories from '../components/Stories';
+import CTA from '../components/CTA';
 
 const LandingPage = () => {
   return (
@@ -19,6 +20,8 @@ const LandingPage = () => {
 
 
       <SemiCircleArcSection />
+
+      <CTA />
 
 
       <Stories />
@@ -46,6 +49,8 @@ const LandingPage = () => {
       <AchievementsAwards />
 
 
+
+      
 
       <Footer />
     </div>

@@ -7,7 +7,7 @@
 
 .during-covid-title {
   font-size: 62px;
-  font-weight: bold;
+  font-weight: 500;
   color: #333333;
   margin-bottom: 40px;
   text-align: left;
@@ -73,15 +73,9 @@
   display: block;
 }
 
-.icon-circle:hover {
-  transform: scale(1.1);
-  opacity: 0.9;
-}
 
-.icon-circle.active {
-  transform: scale(1.15);
-  box-shadow: none;
-}
+
+
 
 
 
