@@ -12,6 +12,15 @@ const baseImages = [
   "/Images/Container (7).jpg",
 ];
 
+const mobileImages = [
+  "/Images/Container1.png",
+  "/Images/(1).png",
+  "/Images/(2).png",
+  "/Images/(3).png",
+  "/Images/(4).png",
+  "/Images/(5).jpg",
+  "/Images/(6).jpg",
+];
 
 const images = [...baseImages, ...baseImages];
 
@@ -30,9 +39,6 @@ const SemiCircleArcSection = () => {
   const sliderRef = useRef(null);
   const imageScrollTimeoutRef = useRef(null);
   const timelineScrollTimeoutRef = useRef(null);
-
-
-  const mobileImages = baseImages.slice(0, 6);
 
   // Easing functions for smooth animations
   const easeOutCubic = (t) => {
@@ -211,8 +217,8 @@ const SemiCircleArcSection = () => {
         if (elementTop <= startPoint && elementTop >= endPoint) {
           const scrollableDistance = startPoint - endPoint;
           const scrolled = startPoint - elementTop;
-          const rawProgress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
-          progress = easeInOutCubic(rawProgress); // Apply easing for smooth animation
+          // Use linear progress for smooth, proportional movement with scroll speed
+          progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
         } else if (elementTop < endPoint) {
           progress = 1;
         } else {
@@ -282,8 +288,8 @@ const SemiCircleArcSection = () => {
         if (elementTop <= startPoint && elementTop >= endPoint) {
           const scrollableDistance = startPoint - endPoint;
           const scrolled = startPoint - elementTop;
-          const rawProgress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
-          progress = easeInOutCubic(rawProgress); // Apply easing for smooth animation
+          // Use linear progress for smooth, proportional movement with scroll speed
+          progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
         } else if (elementTop < endPoint) {
           progress = 1;
         } else {
@@ -329,6 +335,26 @@ const SemiCircleArcSection = () => {
   const getTimelinePointPosition = (index) => {
 
     const timelineRadius = radius * 0.85;
+    
+    // For first (01) and last (04) icons, position them so bottom edge touches arc top edge
+    // For middle icons, position them slightly above the arc
+    const isFirstOrLast = index === 0 || index === timelinePoints.length - 1;
+    // Icon size is the radius (half of 80px = 40px for desktop)
+    const iconSize = windowWidth >= 1024 ? 40 : windowWidth >= 768 ? 27.5 : 20;
+    // Arc stroke width - need to account for it to align properly
+    const arcStrokeWidth = windowWidth >= 768 ? 1 : 0.75; // Half of stroke width
+    
+    let iconRadius;
+    if (isFirstOrLast) {
+      // Position icon center so bottom edge perfectly touches arc's top edge
+      // Arc center is at timelineRadius, top edge is at timelineRadius - arcStrokeWidth
+      // Icon center = arc top edge + icon radius = (timelineRadius - arcStrokeWidth) + iconSize
+      iconRadius = timelineRadius - arcStrokeWidth + iconSize;
+    } else {
+      // Position slightly above arc for middle icons
+      const iconOffset = iconSize + 5; // 5px spacing above arc
+      iconRadius = timelineRadius + iconOffset;
+    }
 
 
     const verticalOffset =
@@ -341,23 +367,14 @@ const SemiCircleArcSection = () => {
     const startAngle = timelineEndAngle;
 
 
-    // Apply smooth easing for train-like movement
-    const smoothedProgress = smoothStep(scrollProgress);
-    
-    // Add very slight stagger for train-like sequential movement (each point follows slightly behind)
-    const staggerDelay = index * 0.02; // Very small delay for subtle train effect
-    const adjustedProgress = Math.min(1, Math.max(0, smoothedProgress - staggerDelay));
-    
-    // Apply additional easing for ultra-smooth movement
-    const easedProgress = easeOutQuart(adjustedProgress);
-
-
-    const currentAngle = startAngle + (finalAngle - startAngle) * easedProgress;
+    // Use linear progress for smooth, proportional movement with scroll
+    // No easing or stagger - direct mapping to scroll position
+    const currentAngle = startAngle + (finalAngle - startAngle) * scrollProgress;
 
     const radian = (currentAngle * Math.PI) / 180;
 
-    const x = Math.cos(radian) * timelineRadius;
-    const y = Math.abs(Math.sin(radian)) * timelineRadius - verticalOffset;
+    const x = Math.cos(radian) * iconRadius;
+    const y = Math.abs(Math.sin(radian)) * iconRadius - verticalOffset;
 
     return { x, y };
   };
@@ -366,32 +383,30 @@ const SemiCircleArcSection = () => {
     <section className="arc-section">
       <div className="mobile-semi-circle-images">
         {mobileImages.map((src, index) => {
+          // Create semicircle similar to baseImages circle
+          // Top semicircle from 180 degrees (left) to 0 degrees (right)
+          const totalMobileImages = mobileImages.length;
+          const semicircleAngle = 180; // Semicircle is 180 degrees
+          const mobileAngleStep = semicircleAngle / (totalMobileImages - 1);
+          
+          // Start from 180 degrees (left side, top) and go to 0 degrees (right side, top)
+          const baseAngle = 180 - (index * mobileAngleStep);
+          const radian = (baseAngle * Math.PI) / 180;
 
+          // Calculate mobile radius based on screen width
+          const mobileRadius = windowWidth >= 480 ? 180 : 160;
 
-
-          const startAngle = 35; 
-          const endAngle = 145; 
-          const totalAngle = endAngle - startAngle; 
-
-
-          const angle =
-            startAngle + (index * totalAngle) / (mobileImages.length - 1);
-          const radian = (angle * Math.PI) / 180;
-
-
-          const mobileRadius = windowWidth >= 480 ? 180 : 160; 
-
-
-
-
-
-
+          // Position images in top semicircle
+          // Using cos for x and -sin for y to create top semicircle
           const x = Math.cos(radian) * mobileRadius;
-          const y = -Math.sin(radian) * mobileRadius; 
+          const y = -Math.sin(radian) * mobileRadius;
 
+          // Keep images facing front (no rotation)
+          const imageRotation = 0;
 
-
-          const rotation = 0; 
+          // Get mobile image dimensions
+          const mobileImageWidth = windowWidth >= 480 ? 85 : 75;
+          const mobileImageHeight = windowWidth >= 480 ? 113 : 100;
 
           return (
             <img
@@ -400,7 +415,12 @@ const SemiCircleArcSection = () => {
               alt={`mobile-arc-${index}`}
               className="mobile-semi-circle-img"
               style={{
-                transform: `translate(${x}px, ${y}px) rotate(${rotation}deg)`,
+                width: `${mobileImageWidth}px`,
+                height: `${mobileImageHeight}px`,
+                marginLeft: `-${mobileImageWidth / 2}px`,
+                marginTop: `-${mobileImageHeight / 2}px`,
+                transform: `translate(${x}px, ${y}px) rotate(${imageRotation}deg)`,
+                transformOrigin: "center center",
               }}
             />
           );
@@ -533,20 +553,76 @@ const SemiCircleArcSection = () => {
                   ? {}
                   : {
                       transform: `translate(${x}px, ${y}px)`,
-                      transition: isScrolling 
-                        ? "transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)" 
-                        : "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                      transition: "none", // No transition - direct movement with scroll for smoothness
                     }
               }
             >
-              <div className="point-number">{point.number}</div>
               <div
                 className="point-icon"
                 style={{ backgroundColor: point.color }}
               >
                 <span className="point-icon-emoji">{point.icon}</span>
               </div>
-              <div className="point-text">{point.text}</div>
+              {index === 0 && !isMobile && (
+                <div 
+                  className="point-content-bottom-left"
+                  style={{
+                    opacity: scrollProgress >= 1 ? 1 : 0,
+                    transform: scrollProgress >= 1 
+                      ? 'translateY(0) scale(1)' 
+                      : 'translateY(20px) scale(0.9)',
+                    transition: 'opacity 1s ease-in-out 0.3s, transform 1s ease-out 0.3s'
+                  }}
+                >
+                  <div className="point-number">{point.number}</div>
+                  <div className="point-text">{point.text}</div>
+                </div>
+              )}
+              {index === 1 && !isMobile && (
+                <div 
+                  className="point-content-bottom"
+                  style={{
+                    opacity: scrollProgress >= 1 ? 1 : 0,
+                    transform: scrollProgress >= 1 
+                      ? 'translate(-50%, 0) scale(1)' 
+                      : 'translate(-50%, 20px) scale(0.9)',
+                    transition: 'opacity 1s ease-in-out 0.5s, transform 1s ease-out 0.5s'
+                  }}
+                >
+                  <div className="point-number">{point.number}</div>
+                  <div className="point-text">{point.text}</div>
+                </div>
+              )}
+              {index === 2 && !isMobile && (
+                <div 
+                  className="point-content-bottom point-content-bottom-right"
+                  style={{
+                    opacity: scrollProgress >= 1 ? 1 : 0,
+                    transform: scrollProgress >= 1 
+                      ? 'translate(-50%, 0) scale(1)' 
+                      : 'translate(-50%, 20px) scale(0.9)',
+                    transition: 'opacity 1s ease-in-out 0.7s, transform 1s ease-out 0.7s'
+                  }}
+                >
+                  <div className="point-number">{point.number}</div>
+                  <div className="point-text">{point.text}</div>
+                </div>
+              )}
+              {index === 3 && !isMobile && (
+                <div 
+                  className="point-content-right"
+                  style={{
+                    opacity: scrollProgress >= 1 ? 1 : 0,
+                    transform: scrollProgress >= 1 
+                      ? 'translateX(0) scale(1)' 
+                      : 'translateX(20px) scale(0.9)',
+                    transition: 'opacity 1s ease-in-out 0.9s, transform 1s ease-out 0.9s'
+                  }}
+                >
+                  <div className="point-number">{point.number}</div>
+                  <div className="point-text">{point.text}</div>
+                </div>
+              )}
             </div>
           );
         })}
