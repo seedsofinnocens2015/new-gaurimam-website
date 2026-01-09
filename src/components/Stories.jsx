@@ -36,7 +36,7 @@ const Stories = () => {
     <section id="tedx" className="stories-section" ref={sectionRef}>
       <div className="stories-image-container">
         <img src="/Images/tedx.png" alt="Story" className="stories-image stories-image-desktop" />
-        <img src="/Images/tedx (1).png" alt="Story Mobile" className="stories-image stories-image-mobile" />
+        <img src="/Images/MobileTedX.png" alt="Story Mobile" className="stories-image stories-image-mobile" />
         
         <div className="stories-images-wrapper">
           <img 
