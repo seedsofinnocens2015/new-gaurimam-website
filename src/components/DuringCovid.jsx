@@ -84,7 +84,7 @@ const DuringCovid = () => {
 
   return (
     <section className="during-covid-section" ref={sectionRef}>
-      <h2 className="during-covid-title">During Covid</h2>
+      <h2 className="during-covid-title">Her Contributions <span className="during-covid-title-span">During Covid</span></h2>
 
       <div className="during-covid-content">
         <div className="during-covid-image-wrapper">

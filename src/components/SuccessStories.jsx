@@ -57,7 +57,7 @@ const SuccessStories = () => {
   return (
     <section id="success-stories" className="success-stories-section">
       <h2 className="success-stories-title">
-        Success Stories <span className="star-emoji">⭐</span>
+        <strong>Genetic Testing</strong> Made It Happen
       </h2>
       
       <div className="success-stories-card desktop-card">

@@ -257,7 +257,7 @@ const HealthyLife = () => {
   return (
     <section id="gallery" className="healthy-life-section" ref={sectionRef}>
       <h2 className="healthy-life-title">
-        IVF Kids leading a <span className="highlight-red">healthy life</span>
+        <span className="highlight-red">Angels She Brought</span> Into the World
       </h2>
       
       <div className="healthy-life-container">

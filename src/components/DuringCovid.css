@@ -13,6 +13,13 @@
   text-align: left;
 }
 
+.during-covid-title-span {
+  font-size: 62px;
+  font-weight: 700;
+  color: #FDC00B;
+  margin-bottom: 40px;
+  text-align: left;
+}
 .during-covid-content {
   display: flex;
   gap: 60px;
