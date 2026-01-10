@@ -115,6 +115,10 @@
     font-size: 2rem;
   }
 
+  .during-covid-title-span {
+    font-size: 2rem;
+  }
+
   .labs-title {
     font-size: 1.75rem;
   }
@@ -132,6 +136,10 @@
   .during-covid-title {
     font-size: 1.75rem;
     margin-bottom: 30px;
+  }
+
+  .during-covid-title-span {
+    font-size: 1.75rem;
   }
 
   .during-covid-icons {
@@ -165,6 +173,10 @@
   .during-covid-title {
     font-size: 1.5rem;
     margin-bottom: 20px;
+  }
+
+  .during-covid-title-span {
+    font-size: 1.5rem;
   }
 
   .during-covid-icons {
