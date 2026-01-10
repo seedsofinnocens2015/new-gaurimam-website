@@ -236,7 +236,10 @@
   
   @media (max-width: 768px) {
     .mission-text {
-      font-size: 2rem;
+      font-size: 35.53px;
+      font-weight: 400;
+      font-style: normal;
+      text-align: center;
     }
   }
   
@@ -461,7 +464,7 @@
   
   @media (max-width: 767px) {
     .arc-section {
-      padding: 180px 0 50px 0; 
+      padding: 40px 0 50px 0; 
       overflow: visible; 
       position: relative;
     }
@@ -486,31 +489,62 @@
     .mobile-semi-circle-images {
       display: block !important;
       position: absolute;
-      top: 150px; 
+      top: 60px; 
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
       max-width: 480px; 
-      height: 200px; 
+      height: 500px; 
       z-index: 15; 
       pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .mobile-arc-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     
     .mobile-semi-circle-img {
       position: absolute;
-      width: 90px; 
-      height: 120px; 
-      border-radius: 0; 
+      width: 130px; 
+      height: 173px; 
+      border-radius: 8px; 
       border: none; 
       object-fit: cover;
       left: 50%;
       top: 50%;
-      margin-left: -45px; 
-      margin-top: -60px; 
+      margin-left: -65px; 
+      margin-top: -86.5px; 
       box-shadow: none; 
       background: none; 
       transition: transform 0.3s ease;
       transform-origin: center center;
+    }
+    
+    .mobile-arc-white-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.444) 0%,
+        rgba(255, 255, 255, 0.601) 5%,
+        rgba(255, 255, 255, 0.97) 12%,
+        white 25%,
+        white 100%
+      );
+      box-shadow: 0 -10px 30px rgba(255, 255, 255, 0.5);
+      z-index: 9;
+      pointer-events: none;
     }
     
     .mobile-timeline-container {
@@ -521,58 +555,86 @@
       overflow: hidden;
     }
 
+    .mobile-timeline-arc-svg {
+      position: absolute;
+      left: 50%;
+      top: -35%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    .mobile-timeline-arc-path {
+      stroke: #d1d5db;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
     .arc-text {
-      top: 40%; 
-      z-index: 10;
+      top: auto; 
+      left: auto;
+      transform: none;
+      z-index: 20;
       padding: 0 20px;
       position: relative;
       margin-bottom: 40px;
-      margin-top: 50px; 
+      margin-top: 320px; 
+      text-align: center;
     }
     
     .mobile-semi-circle-images {
-      top: 150px; 
+      top: 60px; 
       max-width: 460px; 
-      height: 190px;
+      height: 480px;
     }
     
     .mobile-semi-circle-img {
-      width: 85px; 
-      height: 113px; 
-      margin-left: -42.5px;
-      margin-top: -56.5px;
-      border-radius: 0; 
+      width: 130px; 
+      height: 173px; 
+      margin-left: -65px;
+      margin-top: -86.5px;
+      border-radius: 8px; 
       border: none; 
       box-shadow: none; 
       background: none; 
     }
 
     .mission-text {
-      font-size: 1.75rem; 
+      font-size: 35.53px;
+      font-weight: 400;
+      font-style: normal;
+      text-align: center;
       line-height: 1.3;
     }
 
     .academic-timeline {
       padding: 30px 20px 20px;
-      z-index: 11; 
+      z-index: 20; 
       position: relative; 
       min-height: auto; 
-      margin-top: 40px;
+      margin-top: 0;
+      bottom: auto;
     }
     
     .timeline-title {
       margin-bottom: 30px;
       margin-top: 10px;
+      text-align: center;
     }
     
     .title-line-1 {
-      font-size: 1.75rem; 
-      font-weight: 500;
+      font-size: 41.81px;
+      font-weight: 510;
+      font-style: normal;
+      text-align: center;
     }
     
     .title-line-2 {
-      font-size: 2.25rem; 
-      font-weight: 500;
+      font-size: 41.81px;
+      font-weight: 510;
+      font-style: normal;
+      text-align: center;
       margin-top: 6px;
     }
     
@@ -580,6 +642,7 @@
       width: 100%;
       overflow: hidden;
       position: relative;
+      z-index: 1;
     }
     
     .timeline-slider {
@@ -596,6 +659,8 @@
       text-align: center;
       padding: 0 20px;
       box-sizing: border-box;
+      position: relative;
+      z-index: 1;
     }
     
     .timeline-slide .point-number {
@@ -605,6 +670,29 @@
       margin-bottom: 12px;
     }
     
+    .mobile-timeline-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      width: 100%;
+      padding-top: 10px;
+      z-index: 2;
+    }
+    
+    .mobile-timeline-line {
+      position: absolute;
+      width: 100%;
+      max-width: 400px;
+      height: 60px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    
     .timeline-slide .point-icon {
       width: 70px;
       height: 70px;
@@ -612,8 +700,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 12px;
+      margin: 0 auto;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 2;
     }
     
     .timeline-slide .point-icon-emoji {
@@ -704,203 +794,255 @@
   }
 
   
-  @media (max-width: 767px) and (min-width: 481px) {
-    .arc-section {
-      padding: 220px 0 50px 0;
-      overflow: visible;
-    }
+    @media (max-width: 767px) and (min-width: 481px) {
+      .arc-section {
+        padding: 40px 0 50px 0;
+        overflow: visible;
+      }
 
-    .arc-wrapper {
-      height: auto;
-      min-height: 750px;
-    }
+      .arc-wrapper {
+        height: auto;
+        min-height: 750px;
+      }
 
-    .arc-text {
-      top: 35%;
-      padding: 0 25px;
-      position: relative;
-      margin-bottom: 35px;
-      margin-top: 50px;
-    }
+      .arc-text {
+        top: auto;
+        left: auto;
+        transform: none;
+        padding: 0 25px;
+        position: relative;
+        margin-bottom: 35px;
+        margin-top: 320px;
+        text-align: center;
+      }
 
-    .mission-text {
-      font-size: 1.65rem;
-      line-height: 1.3;
-    }
+      .mission-text {
+        font-size: 35.53px;
+        font-weight: 400;
+        font-style: normal;
+        text-align: center;
+        line-height: 1.3;
+      }
 
-    .academic-timeline {
-      padding: 28px 18px 20px;
-      margin-top: 35px;
-    }
-    
-    .timeline-title {
-      margin-bottom: 25px;
-    }
+      .academic-timeline {
+        padding: 28px 18px 20px;
+        margin-top: 0;
+        bottom: auto;
+      }
+      
+      .timeline-title {
+        margin-bottom: 25px;
+        text-align: center;
+      }
 
-    .title-line-1 {
-      font-size: 1.6rem;
-    }
+      .title-line-1 {
+        font-size: 41.81px;
+        font-weight: 510;
+        font-style: normal;
+        text-align: center;
+      }
 
-    .title-line-2 {
-      font-size: 2rem;
+      .title-line-2 {
+        font-size: 41.81px;
+        font-weight: 510;
+        font-style: normal;
+        text-align: center;
+      }
+      
+      .mobile-semi-circle-images {
+        top: 60px; 
+        max-width: 440px; 
+        height: 460px;
+      }
+      
+      .mobile-semi-circle-img {
+        width: 120px; 
+        height: 160px; 
+        margin-left: -60px;
+        margin-top: -80px;
+        border-radius: 8px; 
+        border: none; 
+        box-shadow: none; 
+        background: none; 
+      }
+      
+      .arc-text {
+        margin-top: 320px;
+        top: auto;
+        left: auto;
+        transform: none;
+        text-align: center;
+      }
+      
+      .arc-section {
+        padding: 40px 0 50px 0;
+      }
+      
+      .mobile-timeline-arc-svg {
+        width: 550px;
+        height: 550px;
+      }
+
+      .mobile-timeline-arc-path {
+        stroke-width: 1.5;
+      }
+      
+      .timeline-slide .point-number {
+        font-size: 1.85rem;
+      }
+      
+      .mobile-timeline-line {
+        max-width: 380px;
+        height: 60px;
+      }
+      
+      .timeline-slide .point-icon {
+        width: 65px;
+        height: 65px;
+      }
+      
+      .timeline-slide .point-icon-emoji {
+        font-size: 1.6rem;
+      }
+      
+      .timeline-slide .point-text {
+        font-size: 0.9rem;
+      }
     }
-    
-    .mobile-semi-circle-images {
-      top: 150px; 
-      max-width: 440px; 
-      height: 180px;
-    }
-    
-    .mobile-semi-circle-img {
-      width: 80px; 
-      height: 107px; 
-      margin-left: -40px;
-      margin-top: -53.5px;
-      border-radius: 0; 
-      border: none; 
-      box-shadow: none; 
-      background: none; 
-    }
-    
-    .arc-text {
-      margin-top: 50px;
-      top: 38%;
-    }
-    
-    .arc-section {
-      padding: 160px 0 50px 0;
-    }
-    
-    .arc-text {
-      margin-top: 70px;
-    }
-    
-    .timeline-slide .point-number {
-      font-size: 1.85rem;
-    }
-    
-    .timeline-slide .point-icon {
-      width: 65px;
-      height: 65px;
-    }
-    
-    .timeline-slide .point-icon-emoji {
-      font-size: 1.6rem;
-    }
-    
-    .timeline-slide .point-text {
-      font-size: 0.9rem;
-    }
-  }
   
-  @media (max-width: 480px) {
-    .arc-section {
-      padding: 200px 0 40px 0; 
-      overflow: visible; 
-    }
+    @media (max-width: 480px) {
+      .arc-section {
+        padding: 40px 0 40px 0; 
+        overflow: visible; 
+      }
 
-    .arc-wrapper {
-      height: auto;
-      min-height: 700px;
-    }
+      .arc-wrapper {
+        height: auto;
+        min-height: 700px;
+      }
 
-    .arc-text {
-      top: 37%;
-      padding: 0 15px;
-      position: relative;
-      margin-bottom: 30px;
-      margin-top: 50px;
-    }
+      .arc-text {
+        top: auto;
+        left: auto;
+        transform: none;
+        padding: 0 15px;
+        position: relative;
+        margin-bottom: 30px;
+        margin-top: 320px;
+        text-align: center;
+      }
 
-    .mission-text {
-      font-size: 20px;
-      line-height: 1.3;
-    }
+      .mission-text {
+        font-size: 30px;
+        font-weight: 400;
+        font-style: normal;
+        text-align: center;
+        line-height: 1.3;
+      }
 
-    .academic-timeline {
-      padding: 25px 15px 20px;
-      z-index: 11; 
-      margin-top: 30px;
-    }
+      .academic-timeline {
+        padding: 25px 15px 20px;
+        z-index: 20; 
+        margin-top: 0;
+        bottom: auto;
+      }
 
-    .timeline-title {
-      margin-bottom: 20px;
-      margin-top: 8px;
-    }
+      .timeline-title {
+        margin-bottom: 20px;
+        margin-top: 75px;
+        text-align: center;
+      }
 
-    .title-line-1 {
-      font-size: 1.4rem;
-      font-weight: 500;
-    }
+      .title-line-1 {
+        font-size: 35px;
+        font-weight: 510;
+        font-style: normal;
+        text-align: center;
+      }
 
-    .title-line-2 {
-      font-size: 1.8rem;
-      font-weight: 500;
-      margin-top: 6px;
+      .title-line-2 {
+        font-size: 35px;
+        font-weight: 510;
+        font-style: normal;
+        text-align: center;
+        margin-top: 6px;
+      }
+      
+      .mobile-semi-circle-images {
+        top: 85px; 
+        max-width: 420px; 
+        height: 440px;
+      }
+      
+      .mobile-semi-circle-img {
+        width: 110px; 
+        height: 147px; 
+        margin-left: -55px;
+        margin-top: -73.5px;
+        border-radius: 8px; 
+        border: none; 
+        box-shadow: none; 
+        background: none; 
+      }
+      
+      .arc-text {
+        margin-top: 320px;
+        top: auto;
+        left: auto;
+        transform: none;
+        text-align: center;
+      }
+      
+      .arc-section {
+        padding: 40px 0 40px 0;
+      }
+      
+      .mobile-timeline-arc-svg {
+        width: 500px;
+        height: 500px;
+      }
+
+      .mobile-timeline-arc-path {
+        stroke-width: 1.5;
+      }
+      
+      .timeline-slide .point-number {
+        font-size: 1.75rem;
+      }
+      
+      .mobile-timeline-line {
+        max-width: 360px;
+        height: 60px;
+      }
+      
+      .timeline-slide .point-icon {
+        width: 55px;
+        height: 55px;
+      }
+      
+      .timeline-slide .point-icon-emoji {
+        font-size: 1.3rem;
+      }
+      
+      .timeline-slide .point-text {
+        font-size: 0.85rem;
+        padding: 0 5px;
+      }
+      
+      .slider-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+      }
+      
+      .slider-navigation {
+        gap: 12px;
+      }
     }
-    
-    .mobile-semi-circle-images {
-      top: 335px; 
-      max-width: 420px; 
-      height: 170px;
-    }
-    
-    .mobile-semi-circle-img {
-      width: 75px; 
-      height: 100px; 
-      margin-left: -37.5px;
-      margin-top: -50px;
-      border-radius: 0; 
-      border: none; 
-      box-shadow: none; 
-      background: none; 
-    }
-    
-    .arc-text {
-      margin-top: 50px;
-      top: 37%;
-    }
-    
-    .arc-section {
-      padding: 285px 0 40px 0;
-    }
-    
-    .arc-text {
-      margin-top: 155px;
-    }
-    
-    .timeline-slide .point-number {
-      font-size: 1.75rem;
-    }
-    
-    .timeline-slide .point-icon {
-      width: 55px;
-      height: 55px;
-    }
-    
-    .timeline-slide .point-icon-emoji {
-      font-size: 1.3rem;
-    }
-    
-    .timeline-slide .point-text {
-      font-size: 0.85rem;
-      padding: 0 5px;
-    }
-    
-    .slider-arrow {
-      width: 35px;
-      height: 35px;
-      font-size: 20px;
-    }
-    
-    .slider-navigation {
-      gap: 12px;
-    }
-  }
   
   @media (max-width: 359px) {
     .arc-section {
-      padding: 180px 0 35px 0;
+      padding: 40px 0 35px 0;
       overflow: visible;
     }
 
@@ -910,68 +1052,95 @@
     }
 
     .arc-text {
-      top: 35%;
+      top: auto;
+      left: auto;
+      transform: none;
       padding: 0 12px;
       position: relative;
       margin-bottom: 25px;
-      margin-top: 50px;
+      margin-top: 320px;
+      text-align: center;
     }
 
     .mission-text {
-      font-size: 1.35rem;
+      font-size: 35.53px;
+      font-weight: 400;
+      font-style: normal;
+      text-align: center;
       line-height: 1.25;
     }
 
     .academic-timeline {
       padding: 20px 12px 15px;
-      margin-top: 25px;
+      margin-top: 0;
+      bottom: auto;
     }
     
     .timeline-title {
       margin-bottom: 18px;
+      text-align: center;
     }
 
     .title-line-1 {
-      font-size: 1.25rem;
+      font-size: 41.81px;
+      font-weight: 510;
+      font-style: normal;
+      text-align: center;
     }
 
     .title-line-2 {
-      font-size: 1.6rem;
+      font-size: 41.81px;
+      font-weight: 510;
+      font-style: normal;
+      text-align: center;
       margin-top: 5px;
     }
     
     .mobile-semi-circle-images {
-      top: 150px; 
+      top: 60px; 
       max-width: 400px; 
-      height: 160px;
+      height: 400px;
     }
     
     .mobile-semi-circle-img {
-      width: 70px; 
-      height: 93px; 
-      margin-left: -35px;
-      margin-top: -46.5px;
-      border-radius: 0; 
+      width: 100px; 
+      height: 133px; 
+      margin-left: -50px;
+      margin-top: -66.5px;
+      border-radius: 8px; 
       border: none; 
       box-shadow: none; 
       background: none; 
     }
     
     .arc-text {
-      margin-top: 50px;
-      top: 35%;
+      margin-top: 320px;
+      top: auto;
+      left: auto;
+      transform: none;
+      text-align: center;
     }
     
     .arc-section {
-      padding: 140px 0 40px 0;
+      padding: 40px 0 40px 0;
     }
     
-    .arc-text {
-      margin-top: 85px;
+    .mobile-timeline-arc-svg {
+      width: 450px;
+      height: 450px;
+    }
+
+    .mobile-timeline-arc-path {
+      stroke-width: 1.5;
     }
     
     .timeline-slide .point-number {
       font-size: 1.5rem;
+    }
+    
+    .mobile-timeline-line {
+      max-width: 340px;
+      height: 60px;
     }
     
     .timeline-slide .point-icon {

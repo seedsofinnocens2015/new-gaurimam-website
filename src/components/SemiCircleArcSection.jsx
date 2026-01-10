@@ -13,16 +13,17 @@ const baseImages = [
 ];
 
 const mobileImages = [
-  "/Images/Container1.png",
-  "/Images/(1).png",
-  "/Images/(2).png",
-  "/Images/(3).png",
-  "/Images/(4).png",
-  "/Images/(5).jpg",
-  "/Images/(6).jpg",
+ "/Images/Container.png",
+  "/Images/Container (1).png",
+  "/Images/Container (2).png",
+  "/Images/Container (3).png",
+  // "/Images/(4).png",
+  // "/Images/(5).jpg",
+  // "/Images/(6).jpg",
 ];
 
 const images = [...baseImages, ...baseImages];
+const mobileImagesFull = [...mobileImages, ...mobileImages];
 
 const SemiCircleArcSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -382,49 +383,60 @@ const SemiCircleArcSection = () => {
   return (
     <section id="about" className="arc-section">
       <div className="mobile-semi-circle-images">
-        {mobileImages.map((src, index) => {
-          // Create semicircle similar to baseImages circle
-          // Top semicircle from 180 degrees (left) to 0 degrees (right)
-          const totalMobileImages = mobileImages.length;
-          const semicircleAngle = 180; // Semicircle is 180 degrees
-          const mobileAngleStep = semicircleAngle / (totalMobileImages - 1);
-          
-          // Start from 180 degrees (left side, top) and go to 0 degrees (right side, top)
-          const baseAngle = 180 - (index * mobileAngleStep);
-          const radian = (baseAngle * Math.PI) / 180;
+        <div className="mobile-arc-container">
+          {mobileImagesFull.map((src, index) => {
+            // Create full circle similar to desktop baseImages circle
+            const totalMobileImages = mobileImagesFull.length;
+            const mobileAngleStep = 360 / totalMobileImages;
+            
+            // Start from top (0 degrees) and go around full circle
+            // Apply scroll rotation to the base angle
+            const baseAngle = index * mobileAngleStep;
+            const scrollRotation = -90 + imageScrollProgress * 45;
+            const adjustedAngle = baseAngle + scrollRotation;
+            const radian = (adjustedAngle * Math.PI) / 180;
 
-          // Calculate mobile radius based on screen width
-          const mobileRadius = windowWidth >= 480 ? 180 : 160;
+            // Calculate mobile radius based on screen width
+            const mobileRadius = windowWidth >= 480 ? 220 : 200;
 
-          // Position images in top semicircle
-          // Using cos for x and -sin for y to create top semicircle
-          const x = Math.cos(radian) * mobileRadius;
-          const y = -Math.sin(radian) * mobileRadius;
+            // Position images in full circle
+            // Using sin for x and -cos for y to match desktop pattern
+            const x = Math.sin(radian) * mobileRadius;
+            const yOffset = windowWidth >= 480 ? 80 : 70;
+            const y = -Math.cos(radian) * mobileRadius + yOffset;
 
-          // Keep images facing front (no rotation)
-          const imageRotation = 0;
+            // Rotate images to face outward like desktop
+            const imageRotation = adjustedAngle + 180;
 
-          // Get mobile image dimensions
-          const mobileImageWidth = windowWidth >= 480 ? 85 : 75;
-          const mobileImageHeight = windowWidth >= 480 ? 113 : 100;
+            // Get mobile image dimensions
+            const mobileImageWidth = windowWidth >= 480 ? 130 : 110;
+            const mobileImageHeight = windowWidth >= 480 ? 173 : 147;
 
-          return (
-            <img
-              key={`mobile-img-${index}`}
-              src={src}
-              alt={`mobile-arc-${index}`}
-              className="mobile-semi-circle-img"
-              style={{
-                width: `${mobileImageWidth}px`,
-                height: `${mobileImageHeight}px`,
-                marginLeft: `-${mobileImageWidth / 2}px`,
-                marginTop: `-${mobileImageHeight / 2}px`,
-                transform: `translate(${x}px, ${y}px) rotate(${imageRotation}deg)`,
-                transformOrigin: "center center",
-              }}
-            />
-          );
-        })}
+            // Determine z-index based on position (top half higher z-index)
+            const isTopHalf = y < yOffset;
+            const zIndex = isTopHalf ? 8 + Math.abs((y / mobileRadius) * 3) : 3;
+
+            return (
+              <img
+                key={`mobile-img-${index}`}
+                src={src}
+                alt={`mobile-arc-${index}`}
+                className="mobile-semi-circle-img"
+                style={{
+                  width: `${mobileImageWidth}px`,
+                  height: `${mobileImageHeight}px`,
+                  marginLeft: `-${mobileImageWidth / 2}px`,
+                  marginTop: `-${mobileImageHeight / 2}px`,
+                  transform: `translate(${x}px, ${y}px) rotate(${imageRotation}deg)`,
+                  transformOrigin: "center center",
+                  zIndex: Math.round(zIndex),
+                  transition: isScrolling ? "none" : "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                }}
+              />
+            );
+          })}
+        </div>
+        <div className="mobile-arc-white-overlay"></div>
       </div>
 
       <div className="arc-wrapper">
@@ -642,6 +654,37 @@ const SemiCircleArcSection = () => {
           </h2>
 
           <div className="mobile-timeline-container">
+            <svg
+              className="mobile-timeline-arc-svg"
+              viewBox={`0 0 ${windowWidth >= 480 ? 600 : 500} ${windowWidth >= 480 ? 600 : 500}`}
+              preserveAspectRatio="xMidYMid meet"
+              style={{ 
+                width: windowWidth >= 480 ? '600px' : '500px', 
+                height: windowWidth >= 480 ? '600px' : '500px' 
+              }}
+            >
+              <path
+                className="mobile-timeline-arc-path"
+                d={(() => {
+                  const mobileTimelineRadius = (windowWidth >= 480 ? 220 : 200) * 0.85;
+                  const mobileStartAngle = timelineStartAngle;
+                  const mobileEndAngle = timelineEndAngle;
+                  const mobileStartRadian = (mobileStartAngle * Math.PI) / 180;
+                  const mobileEndRadian = (mobileEndAngle * Math.PI) / 180;
+                  const mobileSvgSize = windowWidth >= 480 ? 600 : 500;
+                  const center = mobileSvgSize / 2;
+                  const startX = Math.cos(mobileStartRadian) * mobileTimelineRadius + center;
+                  const startY = Math.abs(Math.sin(mobileStartRadian)) * mobileTimelineRadius + center;
+                  const endX = Math.cos(mobileEndRadian) * mobileTimelineRadius + center;
+                  const endY = Math.abs(Math.sin(mobileEndRadian)) * mobileTimelineRadius + center;
+                  const arcRadius = mobileTimelineRadius;
+                  return `M ${startX},${startY} A ${arcRadius},${arcRadius} 0 0,0 ${endX},${endY}`;
+                })()}
+                fill="none"
+                stroke="#d1d5db"
+                strokeWidth="1.5"
+              />
+            </svg>
             <div
               className="timeline-slider-wrapper"
               ref={sliderRef}
@@ -658,11 +701,14 @@ const SemiCircleArcSection = () => {
                 {timelinePoints.map((point, index) => (
                   <div key={`mobile-${index}`} className="timeline-slide">
                     <div className="point-number">{point.number}</div>
-                    <div
-                      className="point-icon"
-                      style={{ backgroundColor: point.color }}
-                    >
-                      <span className="point-icon-emoji">{point.icon}</span>
+                    <div className="mobile-timeline-icon-wrapper">
+                     
+                      <div
+                        className="point-icon"
+                        style={{ backgroundColor: point.color }}
+                      >
+                        <span className="point-icon-emoji">{point.icon}</span>
+                      </div>
                     </div>
                     <div className="point-text">{point.text}</div>
                   </div>
