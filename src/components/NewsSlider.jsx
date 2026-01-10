@@ -42,10 +42,8 @@ const NewsSlider = () => {
     setCurrentSlide((prev) => {
       const isMobileView = window.innerWidth <= 768;
       if (isMobileView) {
-        // Mobile: cycle through all items
         return prev >= newsItems.length - 1 ? 0 : prev + 1;
       } else {
-        // Desktop: original logic for multiple cards
         if (prev >= newsItems.length - 2) {
           return 0;
         }
@@ -58,10 +56,8 @@ const NewsSlider = () => {
     setCurrentSlide((prev) => {
       const isMobileView = window.innerWidth <= 768;
       if (isMobileView) {
-        // Mobile: cycle through all items
         return prev <= 0 ? newsItems.length - 1 : prev - 1;
       } else {
-        // Desktop: original logic for multiple cards
         if (prev <= 0) {
           return Math.max(0, newsItems.length - 2);
         }
@@ -74,7 +70,6 @@ const NewsSlider = () => {
     setCurrentSlide(index);
   };
 
-  // Handle window resize to detect mobile view
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);

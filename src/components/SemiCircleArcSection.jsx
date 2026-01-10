@@ -17,9 +17,6 @@ const mobileImages = [
   "/Images/Container (1).png",
   "/Images/Container (2).png",
   "/Images/Container (3).png",
-  // "/Images/(4).png",
-  // "/Images/(5).jpg",
-  // "/Images/(6).jpg",
 ];
 
 const images = [...baseImages, ...baseImages];
@@ -41,7 +38,6 @@ const SemiCircleArcSection = () => {
   const imageScrollTimeoutRef = useRef(null);
   const timelineScrollTimeoutRef = useRef(null);
 
-  // Easing functions for smooth animations
   const easeOutCubic = (t) => {
     return 1 - Math.pow(1 - t, 3);
   };
@@ -109,11 +105,11 @@ const SemiCircleArcSection = () => {
   };
 
   const getImageHeight = () => {
-    if (windowWidth >= 1440) return 267; // 200 * 4/3 = 266.67
-    if (windowWidth >= 1200) return 240; // 180 * 4/3 = 240
-    if (windowWidth >= 1024) return 200; // 150 * 4/3 = 200
-    if (windowWidth >= 768) return 173; // 130 * 4/3 = 173.33
-    return 133; // 100 * 4/3 = 133.33
+    if (windowWidth >= 1440) return 267;
+    if (windowWidth >= 1200) return 240;
+    if (windowWidth >= 1024) return 200;
+    if (windowWidth >= 768) return 173;
+    return 133;
   };
 
   const imageWidth = getImageWidth();
@@ -197,7 +193,6 @@ const SemiCircleArcSection = () => {
 
       setIsScrolling(true);
       
-      // Clear existing timeout
       if (imageScrollTimeoutRef.current) {
         clearTimeout(imageScrollTimeoutRef.current);
       }
@@ -218,7 +213,6 @@ const SemiCircleArcSection = () => {
         if (elementTop <= startPoint && elementTop >= endPoint) {
           const scrollableDistance = startPoint - endPoint;
           const scrolled = startPoint - elementTop;
-          // Use linear progress for smooth, proportional movement with scroll speed
           progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
         } else if (elementTop < endPoint) {
           progress = 1;
@@ -231,7 +225,6 @@ const SemiCircleArcSection = () => {
 
       setImageScrollProgress(progress);
 
-      // Set scrolling to false after scroll stops
       imageScrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false);
       }, 100);
@@ -268,7 +261,6 @@ const SemiCircleArcSection = () => {
 
       setIsScrolling(true);
       
-      // Clear existing timeout
       if (timelineScrollTimeoutRef.current) {
         clearTimeout(timelineScrollTimeoutRef.current);
       }
@@ -289,7 +281,6 @@ const SemiCircleArcSection = () => {
         if (elementTop <= startPoint && elementTop >= endPoint) {
           const scrollableDistance = startPoint - endPoint;
           const scrolled = startPoint - elementTop;
-          // Use linear progress for smooth, proportional movement with scroll speed
           progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
         } else if (elementTop < endPoint) {
           progress = 1;
@@ -302,7 +293,6 @@ const SemiCircleArcSection = () => {
 
       setScrollProgress(progress);
 
-      // Set scrolling to false after scroll stops
       timelineScrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false);
       }, 100);
@@ -337,23 +327,15 @@ const SemiCircleArcSection = () => {
 
     const timelineRadius = radius * 0.85;
     
-    // For first (01) and last (04) icons, position them so bottom edge touches arc top edge
-    // For middle icons, position them slightly above the arc
     const isFirstOrLast = index === 0 || index === timelinePoints.length - 1;
-    // Icon size is the radius (half of 80px = 40px for desktop)
     const iconSize = windowWidth >= 1024 ? 40 : windowWidth >= 768 ? 27.5 : 20;
-    // Arc stroke width - need to account for it to align properly
-    const arcStrokeWidth = windowWidth >= 768 ? 1 : 0.75; // Half of stroke width
+    const arcStrokeWidth = windowWidth >= 768 ? 1 : 0.75;
     
     let iconRadius;
-    if (isFirstOrLast) {
-      // Position icon center so bottom edge perfectly touches arc's top edge
-      // Arc center is at timelineRadius, top edge is at timelineRadius - arcStrokeWidth
-      // Icon center = arc top edge + icon radius = (timelineRadius - arcStrokeWidth) + iconSize
+    if (isFirstOrLast) {  
       iconRadius = timelineRadius - arcStrokeWidth + iconSize;
     } else {
-      // Position slightly above arc for middle icons
-      const iconOffset = iconSize + 5; // 5px spacing above arc
+      const iconOffset = iconSize + 5;
       iconRadius = timelineRadius + iconOffset;
     }
 
@@ -368,8 +350,6 @@ const SemiCircleArcSection = () => {
     const startAngle = timelineEndAngle;
 
 
-    // Use linear progress for smooth, proportional movement with scroll
-    // No easing or stagger - direct mapping to scroll position
     const currentAngle = startAngle + (finalAngle - startAngle) * scrollProgress;
 
     const radian = (currentAngle * Math.PI) / 180;
@@ -385,34 +365,25 @@ const SemiCircleArcSection = () => {
       <div className="mobile-semi-circle-images">
         <div className="mobile-arc-container">
           {mobileImagesFull.map((src, index) => {
-            // Create full circle similar to desktop baseImages circle
             const totalMobileImages = mobileImagesFull.length;
             const mobileAngleStep = 360 / totalMobileImages;
             
-            // Start from top (0 degrees) and go around full circle
-            // Apply scroll rotation to the base angle
             const baseAngle = index * mobileAngleStep;
             const scrollRotation = -90 + imageScrollProgress * 45;
             const adjustedAngle = baseAngle + scrollRotation;
             const radian = (adjustedAngle * Math.PI) / 180;
 
-            // Calculate mobile radius based on screen width
             const mobileRadius = windowWidth >= 480 ? 220 : 200;
 
-            // Position images in full circle
-            // Using sin for x and -cos for y to match desktop pattern
             const x = Math.sin(radian) * mobileRadius;
             const yOffset = windowWidth >= 480 ? 80 : 70;
             const y = -Math.cos(radian) * mobileRadius + yOffset;
 
-            // Rotate images to face outward like desktop
             const imageRotation = adjustedAngle + 180;
 
-            // Get mobile image dimensions
             const mobileImageWidth = windowWidth >= 480 ? 130 : 110;
             const mobileImageHeight = windowWidth >= 480 ? 173 : 147;
 
-            // Determine z-index based on position (top half higher z-index)
             const isTopHalf = y < yOffset;
             const zIndex = isTopHalf ? 8 + Math.abs((y / mobileRadius) * 3) : 3;
 
@@ -565,7 +536,7 @@ const SemiCircleArcSection = () => {
                   ? {}
                   : {
                       transform: `translate(${x}px, ${y}px)`,
-                      transition: "none", // No transition - direct movement with scroll for smoothness
+                      transition: "none",
                     }
               }
             >

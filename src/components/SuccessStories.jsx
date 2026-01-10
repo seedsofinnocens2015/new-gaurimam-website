@@ -32,9 +32,7 @@ const SuccessStories = () => {
   const totalCases = Object.keys(successCases).length;
 
   useEffect(() => {
-    // When activeCase changes, immediately hide old content
     setIsChanging(true);
-    // Use requestAnimationFrame to ensure DOM update happens before showing new
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setIsChanging(false);

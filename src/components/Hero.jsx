@@ -47,7 +47,6 @@ const Hero = () => {
 
       <Navbar />
 
-      {/* Desktop Backlight - Separate */}
       <motion.div
         className="absolute z-9 hidden lg:block"
         style={{ top: '159px', left: '41px' }}
@@ -71,7 +70,6 @@ const Hero = () => {
         ></div>
       </motion.div>
 
-      {/* Desktop Frame - Separate */}
       <motion.div
         className="absolute z-10 hidden lg:block"
         style={{ top: '159px', left: '41px' }}
@@ -91,12 +89,10 @@ const Hero = () => {
             width: '1600px',
             height: '900px',
             borderRadius: '40px',
-            // filter: 'drop-shadow(0 0 20px rgba(0, 0, 0, 0))'
           }}
         />
       </motion.div>
 
-      {/* Mobile Backlight - Separate */}
       <motion.div
         className="absolute z-9 block lg:hidden"
         style={{ top: '170px', right: '8%', left: 'auto' }}
@@ -122,7 +118,6 @@ const Hero = () => {
         ></div>
       </motion.div>
 
-      {/* Mobile Frame - Separate */}
       <motion.div
         className="absolute z-10 block lg:hidden"
         style={{ top: '160px', right: '8%', left: 'auto' }}
@@ -144,7 +139,6 @@ const Hero = () => {
             height: 'auto',
             borderRadius: '20px',
             display: 'block',
-            // filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.6))'
           }}
         />
       </motion.div>

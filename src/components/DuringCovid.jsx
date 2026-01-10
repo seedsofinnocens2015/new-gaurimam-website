@@ -45,24 +45,19 @@ const DuringCovid = () => {
     if (!section) return;
 
     const handleWheel = (e) => {
-      // Prevent default scroll behavior
       e.preventDefault();
 
-      // Clear existing timeout
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
 
-      // Throttle scroll events
       scrollTimeoutRef.current = setTimeout(() => {
         const currentIndex = tabs.indexOf(activeTab);
         let newIndex = currentIndex;
 
         if (e.deltaY > 0) {
-          // Scrolling down - move to next tab
           newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : currentIndex;
         } else if (e.deltaY < 0) {
-          // Scrolling up - move to previous tab
           newIndex = currentIndex > 0 ? currentIndex - 1 : currentIndex;
         }
 

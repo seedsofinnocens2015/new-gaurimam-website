@@ -59,7 +59,6 @@ const HealthyLife = () => {
     setCurrentSlide(index);
   };
 
-  // Handle window resize to detect mobile view
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -73,7 +72,6 @@ const HealthyLife = () => {
     };
   }, []);
 
-  // Intersection Observer to detect when section is in view
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -97,61 +95,50 @@ const HealthyLife = () => {
     };
   }, []);
 
-  // Wheel event handler for carousel scrolling (desktop only)
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const handleWheel = (e) => {
-      // Skip wheel events on mobile devices
       const isMobile = window.innerWidth <= 768;
       if (isMobile) return;
 
-      // Only handle wheel events when section is in view
       if (!isInViewRef.current) {
         return;
       }
 
-      // Prevent default scroll when transitioning
       if (isTransitioningRef.current) {
         e.preventDefault();
         return;
       }
 
       const deltaY = e.deltaY;
-      const threshold = 50; // Minimum scroll delta to trigger slide change
+      const threshold = 50;
 
-      // Determine scroll direction
       const isScrollingDown = deltaY > 0;
       const isScrollingUp = deltaY < 0;
 
-      // Track scroll direction and accumulate delta only if direction matches
       if (scrollDirectionRef.current === null) {
         scrollDirectionRef.current = isScrollingDown ? 'down' : 'up';
       }
 
-      // Only accumulate if scrolling in the same direction
       if (
         (isScrollingDown && scrollDirectionRef.current === 'down') ||
         (isScrollingUp && scrollDirectionRef.current === 'up')
       ) {
         accumulatedDeltaRef.current += Math.abs(deltaY);
       } else {
-        // Reset if direction changes
         accumulatedDeltaRef.current = Math.abs(deltaY);
         scrollDirectionRef.current = isScrollingDown ? 'down' : 'up';
       }
 
-      // Clear existing timeout
       if (wheelTimeoutRef.current) {
         clearTimeout(wheelTimeoutRef.current);
       }
 
-      // Only trigger slide change if accumulated delta exceeds threshold
       if (accumulatedDeltaRef.current >= threshold) {
         e.preventDefault();
         
-        // Set transitioning state
         isTransitioningRef.current = true;
 
         if (isScrollingDown) {
@@ -166,16 +153,13 @@ const HealthyLife = () => {
           });
         }
 
-        // Reset accumulated delta and direction
         accumulatedDeltaRef.current = 0;
         scrollDirectionRef.current = null;
 
-        // Allow transition to complete before allowing next scroll
         setTimeout(() => {
           isTransitioningRef.current = false;
-        }, 600); // Match CSS transition duration (500ms) + buffer
+        }, 600);
       } else {
-        // Reset accumulated delta after a short delay if no action taken
         wheelTimeoutRef.current = setTimeout(() => {
           accumulatedDeltaRef.current = 0;
           scrollDirectionRef.current = null;
@@ -193,7 +177,6 @@ const HealthyLife = () => {
     };
   }, [healthyLifeItems.length]);
 
-  // Touch event handlers for mobile swipe
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -214,7 +197,6 @@ const HealthyLife = () => {
       const diffX = touchStartXRef.current - touchEndX;
       const diffY = touchStartYRef.current - touchEndY;
 
-      // Only handle horizontal swipes (ignore vertical scrolling)
       if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
         if (isTransitioningRef.current) {
           touchStartXRef.current = null;
@@ -225,12 +207,10 @@ const HealthyLife = () => {
         isTransitioningRef.current = true;
 
         if (diffX > 0) {
-          // Swipe left - next slide
           setCurrentSlide((prev) => {
             return prev >= healthyLifeItems.length - 1 ? 0 : prev + 1;
           });
         } else {
-          // Swipe right - previous slide
           setCurrentSlide((prev) => {
             return prev <= 0 ? healthyLifeItems.length - 1 : prev - 1;
           });

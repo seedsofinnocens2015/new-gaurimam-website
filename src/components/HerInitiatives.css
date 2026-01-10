@@ -24,7 +24,6 @@
     align-items: center;
 }
 
-/* Mobile View - Stack images vertically */
 @media (max-width: 768px) {
     .her-initiatives-images {
         flex-direction: column;

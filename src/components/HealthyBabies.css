@@ -81,7 +81,6 @@
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Fullscreen effect for first image */
 .healthy-babies-image.fullscreen {
   position: fixed;
   top: 0;

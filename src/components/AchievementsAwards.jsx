@@ -30,19 +30,14 @@ const AchievementsAwards = () => {
       const windowHeight = window.innerHeight;
       const windowCenter = windowHeight / 2;
 
-      // Check if section is in viewport
       if (rect.top < windowHeight && rect.bottom > 0) {
-        // Calculate scroll progress based on section position relative to viewport center
         const sectionTop = rect.top;
         const sectionHeight = rect.height;
         
-        // When section top is at window center, rotation starts (progress = 0)
-        // When section bottom is at window center, rotation completes (progress = 1)
         const startScroll = windowCenter;
         const endScroll = windowCenter - sectionHeight;
         const currentScroll = sectionTop;
         
-        // Calculate scroll progress (0 to 1)
         const scrollProgress = Math.max(
           0,
           Math.min(
@@ -51,30 +46,25 @@ const AchievementsAwards = () => {
           )
         );
 
-        // Rotate 90 degrees clockwise (left to right) based on scroll progress
-        // Once rotation completes (90 degrees), keep it at 90 and stop
         const rotation = Math.min(scrollProgress * 45, 45);
         
         if (rotation >= 45 && !hasRotated) {
           setHasRotated(true);
         }
         
-        // Only update rotation if we haven't completed rotation
         if (!hasRotated) {
           setScrollRotation(rotation);
         } else {
-          // Keep at 90 once rotation is complete
           setScrollRotation(45);
         }
       } else if (rect.bottom < 0) {
-        // Reset only when scrolling back up significantly (section is above viewport)
         setScrollRotation(0);
         setHasRotated(false);
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial call
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
