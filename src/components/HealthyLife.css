@@ -26,6 +26,7 @@
 .healthy-life-wrapper {
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .healthy-life-track {
@@ -44,11 +45,13 @@
 .healthy-life-image {
   width: 100%;
   overflow: hidden;
+  aspect-ratio: 3 / 2;
 }
 
 .healthy-life-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
@@ -153,8 +156,23 @@
     margin-bottom: 30px;
   }
 
+  .healthy-life-track {
+    gap: 0;
+  }
+
+  .healthy-life-wrapper {
+    width: 100%;
+  }
+
   .healthy-life-card {
-    flex: 0 0 calc((100% - 15px) / 1.2);
+    flex: 0 0 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .healthy-life-image {
+    aspect-ratio: 4 / 5;
+    width: 100%;
   }
 
   .healthy-life-slider-arrow {
@@ -177,8 +195,23 @@
     margin-bottom: 20px;
   }
 
+  .healthy-life-track {
+    gap: 0;
+  }
+
+  .healthy-life-wrapper {
+    width: 100%;
+  }
+
   .healthy-life-card {
-    flex: 0 0 90%;
+    flex: 0 0 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .healthy-life-image {
+    aspect-ratio: 4 / 5;
+    width: 100%;
   }
 
   .healthy-life-slider-arrow {

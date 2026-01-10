@@ -24,6 +24,7 @@
 .healthy-babies-wrapper {
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .healthy-babies-track {
@@ -45,11 +46,13 @@
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
+  aspect-ratio: 3 / 2;
 }
 
 .healthy-babies-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -165,8 +168,23 @@
     margin-bottom: 30px;
   }
 
+  .healthy-babies-track {
+    gap: 0;
+  }
+
+  .healthy-babies-wrapper {
+    width: 100%;
+  }
+
   .healthy-babies-card {
-    flex: 0 0 calc((100% - 15px) / 1.2);
+    flex: 0 0 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .healthy-babies-image {
+    aspect-ratio: 4 / 5;
+    width: 100%;
   }
 
   .slider-arrow {
@@ -189,8 +207,23 @@
     margin-bottom: 20px;
   }
 
+  .healthy-babies-track {
+    gap: 0;
+  }
+
+  .healthy-babies-wrapper {
+    width: 100%;
+  }
+
   .healthy-babies-card {
-    flex: 0 0 90%;
+    flex: 0 0 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .healthy-babies-image {
+    aspect-ratio: 4 / 5;
+    width: 100%;
   }
 
   .slider-arrow {

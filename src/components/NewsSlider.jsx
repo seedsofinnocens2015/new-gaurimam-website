@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./NewsSlider.css";
 
 const NewsSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const newsItems = [
     {
@@ -39,25 +40,53 @@ const NewsSlider = () => {
 
   const nextSlide = () => {
     setCurrentSlide((prev) => {
-      if (prev >= newsItems.length - 2) {
-        return 0;
+      const isMobileView = window.innerWidth <= 768;
+      if (isMobileView) {
+        // Mobile: cycle through all items
+        return prev >= newsItems.length - 1 ? 0 : prev + 1;
+      } else {
+        // Desktop: original logic for multiple cards
+        if (prev >= newsItems.length - 2) {
+          return 0;
+        }
+        return prev + 1;
       }
-      return prev + 1;
     });
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) => {
-      if (prev <= 0) {
-        return Math.max(0, newsItems.length - 2);
+      const isMobileView = window.innerWidth <= 768;
+      if (isMobileView) {
+        // Mobile: cycle through all items
+        return prev <= 0 ? newsItems.length - 1 : prev - 1;
+      } else {
+        // Desktop: original logic for multiple cards
+        if (prev <= 0) {
+          return Math.max(0, newsItems.length - 2);
+        }
+        return prev - 1;
       }
-      return prev - 1;
     });
   };
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
+
+  // Handle window resize to detect mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   return (
     <section id="news" className="news-slider-section">
@@ -68,7 +97,9 @@ const NewsSlider = () => {
           <div
             className="news-slider-track"
             style={{
-              transform: `translateX(calc(-${currentSlide} * (40% + 12px)))`,
+              transform: isMobile
+                ? `translateX(calc(-${currentSlide} * 100%))`
+                : `translateX(calc(-${currentSlide} * (40% + 12px)))`,
             }}
           >
             {newsItems.map((item) => (

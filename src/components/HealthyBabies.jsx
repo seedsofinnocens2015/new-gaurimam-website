@@ -3,6 +3,7 @@ import "./HealthyBabies.css";
 
 const HealthyBabies = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
   const wheelTimeoutRef = useRef(null);
   const isTransitioningRef = useRef(false);
@@ -48,6 +49,20 @@ const HealthyBabies = () => {
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
+
+  // Handle window resize to detect mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   // Intersection Observer to detect when section is in view
   useEffect(() => {
@@ -239,7 +254,9 @@ const HealthyBabies = () => {
           <div
             className="healthy-babies-track"
             style={{
-              transform: `translateX(calc(-${currentSlide} * (80% + 16px)))`,
+              transform: isMobile
+                ? `translateX(calc(-${currentSlide} * 100%))`
+                : `translateX(calc(-${currentSlide} * (80% + 16px)))`,
             }}
           >
             {healthyBabiesItems.map((item) => (

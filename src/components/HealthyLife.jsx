@@ -3,6 +3,7 @@ import "./HealthyLife.css";
 
 const HealthyLife = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
   const wheelTimeoutRef = useRef(null);
   const isTransitioningRef = useRef(false);
@@ -57,6 +58,20 @@ const HealthyLife = () => {
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
+
+  // Handle window resize to detect mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   // Intersection Observer to detect when section is in view
   useEffect(() => {
@@ -250,7 +265,9 @@ const HealthyLife = () => {
           <div
             className="healthy-life-track"
             style={{
-              transform: `translateX(calc(-${currentSlide} * (80% + 16px)))`,
+              transform: isMobile
+                ? `translateX(calc(-${currentSlide} * 100%))`
+                : `translateX(calc(-${currentSlide} * (80% + 16px)))`,
             }}
           >
             {healthyLifeItems.map((item) => (
