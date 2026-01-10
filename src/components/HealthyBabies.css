@@ -5,11 +5,35 @@
   width: 100%;
 }
 
+.healthy-babies-title-container {
+  position: relative;
+  margin-bottom: 40px;
+}
+
 .healthy-babies-title {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   text-align: left;
+  display: block;
+}
+
+.healthy-babies-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #00af8694 0%, #00c99afe 100%);
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.326);
+  margin-top: 8px;
+}
+
+.healthy-babies-badge .badge-text {
+  color: #000000ab;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: block;
+  text-align: center;
 }
 
 .highlight-green {
@@ -163,9 +187,21 @@
     padding: 60px 15px;
   }
 
+  .healthy-babies-title-container {
+    margin-bottom: 30px;
+  }
+
   .healthy-babies-title {
     font-size: 2rem;
-    margin-bottom: 30px;
+    margin-bottom: 12px;
+  }
+
+  .healthy-babies-badge {
+    padding: 10px 20px;
+  }
+
+  .healthy-babies-badge .badge-text {
+    font-size: 0.9rem;
   }
 
   .healthy-babies-track {
@@ -202,9 +238,21 @@
     padding: 40px 10px;
   }
 
+  .healthy-babies-title-container {
+    margin-bottom: 20px;
+  }
+
   .healthy-babies-title {
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  .healthy-babies-badge {
+    padding: 8px 16px;
+  }
+
+  .healthy-babies-badge .badge-text {
+    font-size: 0.85rem;
   }
 
   .healthy-babies-track {

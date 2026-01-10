@@ -247,7 +247,12 @@ const HealthyBabies = () => {
 
   return (
     <section className="healthy-babies-section" ref={sectionRef}>
-      <img src="/Images/Frame 1410138918.png" className="healthy-babies-title" alt="Happy and Healthy Babies" />
+      <div className="healthy-babies-title-container">
+        <img src="/Images/Frame 1410138918.png" className="healthy-babies-title" alt="Happy and Healthy Babies" />
+        <div className="healthy-babies-badge">
+          <span className="badge-text">20,000+ babies delivered</span>
+        </div>
+      </div>
       
       <div className="healthy-babies-container">
         <div className="healthy-babies-wrapper">
