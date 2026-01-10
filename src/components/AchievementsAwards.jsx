@@ -114,7 +114,7 @@ const AchievementsAwards = () => {
         <div className="mobile-row mobile-row-top">
           {topRowLogos.map((src, i) => {
             const angle = -60 + i * 60;
-            const radius = 100;
+            const radius = 160;
             return (
               <div
                 key={i}
@@ -141,7 +141,7 @@ const AchievementsAwards = () => {
         <div className="mobile-row mobile-row-bottom">
           {bottomRowLogos.map((src, i) => {
             const angle = -60 + i * 60;
-            const radius = 100;
+            const radius = 160;
             return (
               <div
                 key={i + 3}

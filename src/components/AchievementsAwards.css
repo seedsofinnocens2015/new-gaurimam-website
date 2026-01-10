@@ -47,8 +47,8 @@
 .mobile-row {
   position: relative;
   width: 100%;
-  height: 140px;
-  margin-bottom: 0;
+  height: 200px;
+  margin-bottom: 5px;
 }
 
 .mobile-row-top {
@@ -71,11 +71,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 }
 
 .mobile-award-item img {
   width: 100%;
-  max-width: 200px;
+  max-width: 240px;
   height: auto;
   object-fit: contain;
 }
@@ -89,7 +90,7 @@
 }
 
 .mobile-center img {
-  max-width: 250px;
+  max-width: 220px;
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -108,7 +109,8 @@
 
 @media (max-width: 768px) {
   .circle-section {
-    padding: 60px 20px;
+    padding: 40px 20px;
+    margin-top: 60px;
   }
 
   .desktop-layout {
@@ -120,12 +122,47 @@
   }
 
   .mobile-row {
-    height: 140px;
+    height: 200px;
+    margin-bottom: 5px;
+  }
+
+  .mobile-award-item {
+    margin: 15px;
+  }
+
+  .mobile-award-item img {
+    max-width: 260px;
+    width: 240px;
+  }
+
+  .mobile-center {
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-center img {
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circle-section {
+    padding: 30px 15px;
+    margin-top: 50px;
+  }
+
+  .mobile-row {
+    height: 180px;
     margin-bottom: 0;
+  }
+
+  .mobile-award-item {
+    margin: 10px;
   }
 
   .mobile-award-item img {
     max-width: 240px;
+    width: 220px;
   }
 
   .mobile-center {
@@ -135,30 +172,6 @@
 
   .mobile-center img {
     max-width: 220px;
-  }
-}
-
-@media (max-width: 480px) {
-  .circle-section {
-    padding: 40px 15px;
-  }
-
-  .mobile-row {
-    height: 120px;
-    margin-bottom: 0;
-  }
-
-  .mobile-award-item img {
-    max-width: 200px;
-  }
-
-  .mobile-center {
-    padding: 0;
-    margin: 0;
-  }
-
-  .mobile-center img {
-    max-width: 200px;
   }
 }
   
