@@ -147,12 +147,11 @@
 
 @media (max-width: 480px) {
   .circle-section {
-    padding: 30px 15px;
-    margin-top: 50px;
+    padding: 165px 0px;
   }
 
   .mobile-row {
-    height: 180px;
+    height: 0px;
     margin-bottom: 0;
   }
 
@@ -171,7 +170,7 @@
   }
 
   .mobile-center img {
-    max-width: 220px;
+    max-width: 370px;
   }
 }
   

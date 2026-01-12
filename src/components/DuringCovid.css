@@ -103,7 +103,7 @@
 @media (max-width: 968px) {
   .during-covid-content {
     flex-direction: column;
-    gap: 40px;
+    gap: 0px;
   }
 
   .during-covid-image-wrapper,
@@ -167,12 +167,13 @@
 
 @media (max-width: 480px) {
   .during-covid-section {
-    padding: 40px 10px;
+    padding: 40px 0px;
   }
 
   .during-covid-title {
     font-size: 1.5rem;
     margin-bottom: 20px;
+    padding: 0px 10px;
   }
 
   .during-covid-title-span {
@@ -183,7 +184,6 @@
     gap: 10px;
     margin-bottom: 15px;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   .icon-image {

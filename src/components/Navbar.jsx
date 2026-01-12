@@ -48,7 +48,7 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut", delay: 2.6 }}
     >
-      <nav className="w-full bg-white py-4 md:px-8 flex items-center justify-between relative lg:h-[94.061px]">
+      <nav className="w-full bg-white py-2 md:py-4 md:px-8 flex items-center justify-between relative lg:h-[94.061px]">
         <motion.div
           className="flex-shrink-0 lg:w-[159.6px] lg:h-[94.061px] lg:flex lg:items-center"
           initial={{ x: -50, opacity: 0 }}
@@ -58,7 +58,7 @@ const Navbar = () => {
           <img
             src="/Images/logo.png"
             alt="Dr. Gauri Agarwal Logo"
-            className="h-auto md:h-20 w-40 lg:w-[159.6px] lg:h-[94.061px] lg:object-contain"
+            className="h-14 md:h-20 w-28 md:w-40 lg:w-[159.6px] lg:h-[94.061px] lg:object-contain"
           />
         </motion.div>
 
