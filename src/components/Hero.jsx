@@ -88,7 +88,6 @@ const Hero = () => {
           style={{
             width: '1600px',
             height: '900px',
-            borderRadius: '40px',
           }}
         />
       </motion.div>
