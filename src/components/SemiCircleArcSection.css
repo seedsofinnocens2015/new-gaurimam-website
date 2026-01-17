@@ -933,7 +933,7 @@
       }
 
       .mission-text {
-        font-size: 30px;
+        font-size: 29px;
         font-weight: 400;
         font-style: normal;
         text-align: center;
@@ -969,7 +969,7 @@
       }
       
       .mobile-semi-circle-images {
-        top: 85px; 
+        top: 170px; 
         max-width: 420px; 
         height: 439px;
       }
@@ -994,7 +994,7 @@
       }
       
       .arc-section {
-        padding: 40px 0 40px 0;
+        padding: 120px 0 40px 0;
       }
       
       .mobile-timeline-arc-svg {
